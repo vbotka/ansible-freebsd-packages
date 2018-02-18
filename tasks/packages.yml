@@ -1,0 +1,29 @@
+---
+
+- debug: msg="{{ item.0.name }} {{ item.1 }}"
+  with_subelements:
+   - "{{ pkg_dict }}"
+   - packages
+  when: pkg_debug
+  tags: pkg_dict_debug
+
+- name: Install packages from Dictionary
+  pkgng: >
+    name="{{ item.1 }}"
+    state="present"
+  with_subelements:
+    - "{{ pkg_dict }}"
+    - packages
+  check_mode: no
+  tags: pkg_dict
+
+- name: Install packages from List
+  pkgng: >
+    name="{{ item }}"
+    state="present"
+  with_items: "{{ pkg_list }}"
+  check_mode: no
+  tags: pkg_list
+
+# EOF
+...

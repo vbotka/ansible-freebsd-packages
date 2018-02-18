@@ -1,0 +1,15 @@
+---
+# tasks for freebsd-packages
+
+- include_tasks: conf.yml
+  tags:
+    - freebsd_pkg_conf
+    - freebsd_pkg_all
+
+- include_tasks: packages.yml
+  tags:
+    - freebsd_pkg_packages
+    - freebsd_pkg_all
+
+# EOF
+...

@@ -1,0 +1,25 @@
+# {{ ansible_managed }}
+
+#Example /usr/local/etc/pkg/repos/FreeBSD.conf
+#FreeBSD: {
+#	 url: "pkg+http://pkg.freebsd.org/${ABI}/latest",
+#	 signature_type: "fingerprints",
+#	 fingerprints: "/usr/share/keys/pkg",
+#	 mirror_type: "srv",
+#	 enabled: true
+#	 }
+
+#Example /usr/local/etc/pkg/repos/custom.conf
+#custom: {
+#        url: "http://pkg.example.com/10amd64",
+#	enabled: yes
+#	}
+
+#Example /usr/local/etc/pkg/repos/local.conf
+#local: {
+#       url: "file:///usr/ports/packages/",
+#       mirror_type: NONE,
+#       enabled: yes
+#       }
+
+# EOF

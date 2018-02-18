@@ -1,0 +1,16 @@
+---
+# vars for freebsd-packages
+
+#pkg_debug: true
+#pkg_default_repo: "NO"
+#pkg_repo:
+#  - { name: "local",
+#      url: "file{{ ':' }}///usr/local/poudriere/data/packages/11amd64-local/",
+#      signature_type: "NONE",
+#      fingerprints: "NONE",
+#      mirror_type: "NONE",
+#      enabled: "yes"
+#      }
+
+# EOF
+...

@@ -1,0 +1,11 @@
+# {{ ansible_managed }}
+
+{{ item.name }}: {
+	 url: "{{ item.url }}",
+	 signature_type: {{ item.signature_type }},
+	 fingerprints: {{ item.fingerprints }},
+	 mirror_type: {{ item.mirror_type }},
+	 enabled: {{ item.enabled }}
+	 }
+
+# EOF

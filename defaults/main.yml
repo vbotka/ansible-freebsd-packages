@@ -1,0 +1,17 @@
+---
+# defaults for freebsd-packages
+
+pkg_debug: false
+
+pkg_owner: "root"
+pkg_group: "wheel"
+
+pkg_default_repo: "yes"
+
+pkg_repo: {}
+pkg_list: []
+pkg_dict: {}
+
+
+# EOF
+...
