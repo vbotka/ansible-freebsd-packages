@@ -11,6 +11,14 @@
 #      mirror_type: "NONE",
 #      enabled: "yes"
 #      }
+#pkg_repo:
+#  - { name: "local",
+#      url: "http{{ ':' }}//localhost/packages/11amd64-local/",
+#      signature_type: "NONE",
+#      fingerprints: "NONE",
+#      mirror_type: "NONE",
+#      enabled: "yes"
+#      }
 
 # EOF
 ...
