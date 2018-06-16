@@ -23,7 +23,7 @@
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
     mode: "0644"
-    backup: yes
+    backup: no
 
 - name: "conf: Configure package repositories"
   template:
@@ -32,7 +32,7 @@
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
     mode: "0644"
-    backup: yes
+    backup: no
   with_items: "{{ pkg_repo }}"
 
 # EOF
