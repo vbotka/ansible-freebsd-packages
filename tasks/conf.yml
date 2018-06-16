@@ -1,41 +1,39 @@
 ---
 
-- name: Create /usr/local/etc/pkg
-  file: >
-    path="/usr/local/etc/pkg"
-    state="directory"
-    owner="{{ pkg_owner }}"
-    group="{{ pkg_group }}"
-    mode="0755"
-  tags: pkg_conf_repos
+- name: "conf: Create /usr/local/etc/pkg"
+  file:
+    state: "directory"
+    path: "/usr/local/etc/pkg"
+    owner: "{{ pkg_owner }}"
+    group: "{{ pkg_group }}"
+    mode: "0755"
 
-- name: Create /usr/local/etc/pkg/repos
-  file: >
-    path="/usr/local/etc/pkg/repos"
-    state="directory"
-    owner="{{ pkg_owner }}"
-    group="{{ pkg_group }}"
-    mode="0755"
-  tags: pkg_conf_repos
+- name: "conf: Create /usr/local/etc/pkg/repos"
+  file:
+    state: "directory"
+    path: "/usr/local/etc/pkg/repos"
+    owner: "{{ pkg_owner }}"
+    group: "{{ pkg_group }}"
+    mode: "0755"
 
-- name: Configure /usr/local/etc/pkg/repos/FreeBSD.conf
-  template: >
-    src="FreeBSD.conf.j2"
-    dest="/usr/local/etc/pkg/repos/FreeBSD.conf"
-    owner="{{ pkg_owner }}"
-    group="{{ pkg_group }}"
-    mode="0644"
-  tags: pkg_conf_repos
+- name: "conf: Configure /usr/local/etc/pkg/repos/FreeBSD.conf"
+  template:
+    src: "FreeBSD.conf.j2"
+    dest: "/usr/local/etc/pkg/repos/FreeBSD.conf"
+    owner: "{{ pkg_owner }}"
+    group: "{{ pkg_group }}"
+    mode: "0644"
+    backup: yes
 
-- name: Configure package repositories
-  template: >
-    src="repo.j2"
-    dest="/usr/local/etc/pkg/repos/{{ item.name }}.conf"
-    owner="{{ pkg_owner }}"
-    group="{{ pkg_group }}"
-    mode="0644"
+- name: "conf: Configure package repositories"
+  template:
+    src: "repo.j2"
+    dest: "/usr/local/etc/pkg/repos/{{ item.name }}.conf"
+    owner: "{{ pkg_owner }}"
+    group: "{{ pkg_group }}"
+    mode: "0644"
+    backup: yes
   with_items: "{{ pkg_repo }}"
-  tags: pkg_conf_repos
 
 # EOF
 ...

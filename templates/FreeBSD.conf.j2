@@ -1,2 +1,4 @@
 # {{ ansible_managed }}
-FreeBSD: { enabled: {{ pkg_default_repo|upper }} }
+FreeBSD: {
+        enabled: {{ pkg_default_repo | default("no") }}
+}

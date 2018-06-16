@@ -1,17 +1,16 @@
 galaxy_info:
   author: Vladimir Botka
-  description: Configure package repositories, Install and/or Update packages on FreeBSD.
+  description: Configure repositories for FreeBSD. Install and update packages.
   company: https://botka.link
   license: BSD
   github_branch: master
-  min_ansible_version: 2.4
+  min_ansible_version: 2.5
   platforms:
     - name: FreeBSD
       versions:
-        - 11.0
+        - 10.4
+        - 11.1
   galaxy_tags:
     - freebsd
-    - installer
-    - repositories
     - packages
 dependencies: []

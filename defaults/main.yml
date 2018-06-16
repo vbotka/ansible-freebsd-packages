@@ -1,16 +1,25 @@
 ---
 # defaults for freebsd-packages
 
-pkg_debug: false
+pkg_debug: False
 
 pkg_owner: "root"
 pkg_group: "wheel"
 
+pkg_dryrun: False
+pkg_install_individually: True
 pkg_default_repo: "yes"
-
+pkg_autoremove: no
+pkg_cached: no
+#pkg_annotation:
+#pkg_chroot:
+#pkg_jail:
+#pkg_pkgsite:
+#pkg_rootdir:
 pkg_repo: {}
-pkg_list: []
 pkg_dict: {}
+pkg_list: []
+pkg_list_deinstall: []
 
 
 # EOF

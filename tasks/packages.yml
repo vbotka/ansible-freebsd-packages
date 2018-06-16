@@ -1,29 +1,91 @@
 ---
+# TODO: Implement pkgng annotation.
 
-- debug: msg="{{ item.0.name }} {{ item.1 }}"
-  with_subelements:
-   - "{{ pkg_dict }}"
-   - packages
-  when: pkg_debug
-  tags: pkg_dict_debug
-
-- name: Install packages from Dictionary
-  pkgng: >
-    name="{{ item.1 }}"
-    state="present"
+- name: "packages: Install packages individualy from lists in the dictionary"
+  pkgng:
+    name: "{{ item.1 }}"
+    autoremove: "{{ pkg_autoremove }}"
+    cached: "{{ pkg_cached }}"
+    chroot: "{{ pkg_chroot | default(omit) }}"
+    jail: "{{ pkg_jail | default(omit) }}"
+    pkgsite: "{{ pkg_pkgsite | default(omit) }}"
+    rootdir: "{{ pkg_rootdir | default(omit) }}"
   with_subelements:
     - "{{ pkg_dict }}"
     - packages
-  check_mode: no
-  tags: pkg_dict
+  when:
+    - pkg_install_individually
+    - not pkg_dryrun
 
-- name: Install packages from List
-  pkgng: >
-    name="{{ item }}"
-    state="present"
-  with_items: "{{ pkg_list }}"
-  check_mode: no
-  tags: pkg_list
+- name: "packages: Install lists of packages from the dictionary"
+  pkgng:
+    name: "{{ item.1 }}"
+    autoremove: "{{ pkg_autoremove }}"
+    cached: "{{ pkg_cached }}"
+    chroot: "{{ pkg_chroot | default(omit) }}"
+    jail: "{{ pkg_jail | default(omit) }}"
+    pkgsite: "{{ pkg_pkgsite | default(omit) }}"
+    rootdir: "{{ pkg_rootdir | default(omit) }}"
+  with_list: "{{ lookup('subelements', pkg_dict, 'packages') }}"
+  when:
+    - not pkg_install_individually
+    - not pkg_dryrun
+
+- name: "packages: Install packages individualy from the list"
+  pkgng:
+    name: "{{ item }}"
+    autoremove: "{{ pkg_autoremove }}"
+    cached: "{{ pkg_cached }}"
+    chroot: "{{ pkg_chroot | default(omit) }}"
+    jail: "{{ pkg_jail | default(omit) }}"
+    pkgsite: "{{ pkg_site | default(omit) }}"
+    rootdir: "{{ pkg_rootdir | default(omit) }}"
+  loop: "{{ pkg_list }}"
+  when:
+    - pkg_install_individually
+    - not pkg_dryrun
+
+- name: "packages: Install list of packages"
+  pkgng:
+    name: "{{ pkg_list }}"
+    autoremove: "{{ pkg_autoremove }}"
+    cached: "{{ pkg_cached }}"
+    chroot: "{{ pkg_chroot | default(omit) }}"
+    jail: "{{ pkg_jail | default(omit) }}"
+    pkgsite: "{{ pkg_site | default(omit) }}"
+    rootdir: "{{ pkg_rootdir | default(omit) }}"
+  when:
+    - not pkg_install_individually
+    - not pkg_dryrun
+
+- name: "packages: Deinstall packages individually from the list"
+  pkgng:
+    state: "absent"
+    name: "{{ item }}"
+    autoremove: "{{ pkg_autoremove }}"
+    cached: "{{ pkg_cached }}"
+    chroot: "{{ pkg_chroot | default(omit) }}"
+    jail: "{{ pkg_jail | default(omit) }}"
+    pkgsite: "{{ pkg_site | default(omit) }}"
+    rootdir: "{{ pkg_rootdir | default(omit) }}"
+  loop: "{{ pkg_list_deinstall }}"
+  when:
+    - pkg_install_individually
+    - not pkg_dryrun
+
+- name: "packages: Deinstall list of packages"
+  pkgng:
+    state: "absent"
+    name: "{{ pkg_list_deinstall }}"
+    autoremove: "{{ pkg_autoremove }}"
+    cached: "{{ pkg_cached }}"
+    chroot: "{{ pkg_chroot | default(omit) }}"
+    jail: "{{ pkg_jail | default(omit) }}"
+    pkgsite: "{{ pkg_site | default(omit) }}"
+    rootdir: "{{ pkg_rootdir | default(omit) }}"
+  when:
+    - not pkg_install_individually
+    - not pkg_dryrun
 
 # EOF
 ...

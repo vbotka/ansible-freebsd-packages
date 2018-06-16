@@ -3,7 +3,7 @@ freebsd-packages
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-freebsd-packages.svg?branch=master)](https://travis-ci.org/vbotka/ansible-freebsd-packages)
 
-[Ansible role](https://galaxy.ansible.com/vbotka/freebsd-packages/). Install and/or update packages at FreeBSD
+[Ansible role](https://galaxy.ansible.com/vbotka/freebsd-packages/). Configure repositories for FreeBSD. Install and update packages.
 
 
 Requirements
@@ -15,6 +15,7 @@ None.
 Variables
 ---------
 
+Check the defaults and examples in vars.
 
 
 Workflow
@@ -41,7 +42,7 @@ ansible-galaxy install vbotka.freebsd-packages
 4) Create playbook.
 
 ```
-> cat ~/.ansible/playbooks/freebsd-packages.yml
+> cat freebsd-packages.yml
 ---
 - hosts: example.com
   become: yes
@@ -53,7 +54,7 @@ ansible-galaxy install vbotka.freebsd-packages
 5) Configure the system.
 
 ```
-ansible-playbook ~/.ansible/playbooks/freebsd-packages.yml
+ansible-playbook freebsd-packages.yml
 ```
 
 License
@@ -73,3 +74,4 @@ References
 
 - [FreeBSD handbook: 4.6.2. Configuring pkg Clients to Use a Poudriere Repository](https://www.freebsd.org/doc/handbook/ports-poudriere.html)
 - [man pkg.conf](https://www.freebsd.org/cgi/man.cgi?query=pkg.conf&sektion=5)
+- [pkg - a binary package manager for FreeBSD](https://github.com/freebsd/pkg#working-with-multiple-repositories)
