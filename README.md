@@ -30,31 +30,29 @@ ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 's
 2) Install role.
 
 ```
-ansible-galaxy install vbotka.freebsd-packages
+# ansible-galaxy install vbotka.freebsd-packages
 ```
 
 3) Fit variables.
 
 ```
-~/.ansible/roles/vbotka.freebsd-packages/vars/main.yml
+edit vbotka.freebsd-packages/vars/main.yml
 ```
 
 4) Create playbook.
 
 ```
-> cat freebsd-packages.yml
----
-- hosts: example.com
-  become: yes
-  become_method: sudo
+# cat freebsd-packages.yml
+
+- hosts: srv.example.com
   roles:
-    - role: vbotka.freebsd-packages
+    - vbotka.freebsd-packages
 ```
 
 5) Configure the system.
 
 ```
-ansible-playbook freebsd-packages.yml
+# ansible-playbook freebsd-packages.yml
 ```
 
 License
