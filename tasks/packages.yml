@@ -1,6 +1,14 @@
 ---
 # TODO: Implement pkgng annotation.
 
+- name: "packages: Debug"
+  debug:
+    msg: "{{ item.1 }}"
+  with_subelements:
+    - "{{ pkg_dict }}"
+    - packages
+  when: pkg_debug
+
 - name: "packages: Install packages individualy from lists in the dictionary"
   pkgng:
     name: "{{ item.1 }}"
