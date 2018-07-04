@@ -1,19 +1,17 @@
 ---
 # TODO: Implement pkgng annotation.
 
-- name: "packages: Debug"
-  debug:
-    msg: "{{ item.1 }}"
-  with_subelements:
-    - "{{ pkg_dict }}"
-    - packages
-  when: pkg_debug
+#- name: "packages: Debug"
+#  debug:
+#    msg: "{{ item.1 }}"
+#  loop: "{{ pkg_dict | subelements('packages') }}"
+#  when: pkg_debug
 
 - name: "packages: Install packages individualy from lists in the dictionary"
   pkgng:
     name: "{{ item.1 }}"
-    autoremove: "{{ pkg_autoremove }}"
-    cached: "{{ pkg_cached }}"
+    autoremove: "{{ pkg_autoremove | default(omit) }}"
+    cached: "{{ pkg_cached | default(omit) }}"
     chroot: "{{ pkg_chroot | default(omit) }}"
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_pkgsite | default(omit) }}"
@@ -21,23 +19,19 @@
   with_subelements:
     - "{{ pkg_dict }}"
     - packages
-  when:
-    - pkg_install_individually
-    - not pkg_dryrun
+  when: pkg_install_individually
 
 - name: "packages: Install lists of packages from the dictionary"
   pkgng:
     name: "{{ item.1 }}"
-    autoremove: "{{ pkg_autoremove }}"
-    cached: "{{ pkg_cached }}"
+    autoremove: "{{ pkg_autoremove | default(omit) }}"
+    cached: "{{ pkg_cached | default(omit) }}"
     chroot: "{{ pkg_chroot | default(omit) }}"
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_pkgsite | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
-  with_list: "{{ lookup('subelements', pkg_dict, 'packages') }}"
-  when:
-    - not pkg_install_individually
-    - not pkg_dryrun
+  loop: "{{ lookup('subelements', pkg_dict, 'packages') }}"
+  when: not pkg_install_individually
 
 - name: "packages: Install packages individualy from the list"
   pkgng:
@@ -49,9 +43,7 @@
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
   loop: "{{ pkg_list }}"
-  when:
-    - pkg_install_individually
-    - not pkg_dryrun
+  when: pkg_install_individually
 
 - name: "packages: Install list of packages"
   pkgng:
@@ -62,9 +54,7 @@
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
-  when:
-    - not pkg_install_individually
-    - not pkg_dryrun
+  when: not pkg_install_individually
 
 - name: "packages: Deinstall packages individually from the list"
   pkgng:
@@ -77,9 +67,7 @@
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
   loop: "{{ pkg_list_deinstall }}"
-  when:
-    - pkg_install_individually
-    - not pkg_dryrun
+  when: pkg_install_individually
 
 - name: "packages: Deinstall list of packages"
   pkgng:
@@ -91,9 +79,7 @@
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
-  when:
-    - not pkg_install_individually
-    - not pkg_dryrun
+  when: not pkg_install_individually
 
 # EOF
 ...

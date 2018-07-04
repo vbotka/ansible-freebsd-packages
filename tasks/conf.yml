@@ -2,7 +2,7 @@
 
 - name: "conf: Create /usr/local/etc/pkg"
   file:
-    state: "directory"
+    state: directory
     path: "/usr/local/etc/pkg"
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
@@ -10,7 +10,7 @@
 
 - name: "conf: Create /usr/local/etc/pkg/repos"
   file:
-    state: "directory"
+    state: directory
     path: "/usr/local/etc/pkg/repos"
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
@@ -33,7 +33,7 @@
     group: "{{ pkg_group }}"
     mode: "0644"
     backup: no
-  with_items: "{{ pkg_repo }}"
+  loop: "{{ pkg_repo }}"
 
 # EOF
 ...

@@ -24,12 +24,14 @@
          pkg_site [ {{ pkg_site | default("NOT-DEFINED") }} ]
          pkg_rootdir [ {{ pkg_rootdir | default("NOT-DEFINED") }} ]
          pkg_default_repo [ {{ pkg_default_repo }} ]
-         pkg_repo [
-         {{ pkg_repo | to_nice_yaml }} ]
-         pkg_list [
-         {{ pkg_list | to_nice_yaml }} ]
-         pkg_dict  [
-         {{ pkg_dict | to_nice_yaml }} ]
+         pkg_repo
+         {{ pkg_repo | to_nice_yaml }}
+         pkg_list
+         {{ pkg_list | to_nice_yaml }}
+         pkg_list_deinstall
+         {{ pkg_list_deinstall | to_nice_yaml }}
+         pkg_dict
+         {{ pkg_dict | to_nice_yaml }}
 
   debug:
     msg: "{{ msg.split('\n') }}"

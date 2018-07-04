@@ -9,6 +9,7 @@
   tags: pkg_conf
 
 - import_tasks: packages.yml
+  when: not pkg_dryrun
   tags: pkg_packages
 
 # EOF
