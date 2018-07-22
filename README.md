@@ -70,6 +70,7 @@ Author Information
 References
 ----------
 
+- [FreeBSD handbook: 4.4. Using pkg for Binary Package Management](https://www.freebsd.org/doc/handbook/pkgng-intro.html)
 - [FreeBSD handbook: 4.6.2. Configuring pkg Clients to Use a Poudriere Repository](https://www.freebsd.org/doc/handbook/ports-poudriere.html)
 - [man pkg.conf](https://www.freebsd.org/cgi/man.cgi?query=pkg.conf&sektion=5)
 - [pkg - a binary package manager for FreeBSD](https://github.com/freebsd/pkg#working-with-multiple-repositories)
