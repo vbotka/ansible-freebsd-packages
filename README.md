@@ -1,9 +1,9 @@
-freebsd-packages
+freebsd_packages
 ================
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-freebsd-packages.svg?branch=master)](https://travis-ci.org/vbotka/ansible-freebsd-packages)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/freebsd-packages/) Configure repositories for FreeBSD. Install and update packages.
+[Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) Configure repositories for FreeBSD. Install and update packages.
 
 
 Requirements
@@ -15,7 +15,7 @@ None.
 Variables
 ---------
 
-Check the defaults and examples in vars.
+TBD. Review the defaults and examples in vars.
 
 
 Workflow
@@ -30,13 +30,13 @@ ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 's
 2) Install role.
 
 ```
-# ansible-galaxy install vbotka.freebsd-packages
+# ansible-galaxy install vbotka.freebsd_packages
 ```
 
 3) Fit variables.
 
 ```
-edit vbotka.freebsd-packages/vars/main.yml
+edit vbotka.freebsd_packages/vars/main.yml
 ```
 
 4) Create playbook.
@@ -46,7 +46,7 @@ edit vbotka.freebsd-packages/vars/main.yml
 
 - hosts: srv.example.com
   roles:
-    - vbotka.freebsd-packages
+    - vbotka.freebsd_packages
 ```
 
 5) Configure the system.

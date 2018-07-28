@@ -1,4 +1,5 @@
 galaxy_info:
+  role_name: freebsd_packages
   author: Vladimir Botka
   description: Configure repositories for FreeBSD. Install and update packages.
   company: https://botka.link
