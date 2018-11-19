@@ -3,7 +3,7 @@
 
 - import_tasks: debug.yml
   when: pkg_debug
-  tags: pkg_debug
+  tags: [pkg_debug, always]
 
 - import_tasks: conf.yml
   tags: pkg_conf

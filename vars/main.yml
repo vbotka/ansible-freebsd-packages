@@ -1,11 +1,11 @@
 ---
 # vars for freebsd-packages
 
-#pkg_debug: True
-#pkg_default_repo: "no"
+# pkg_debug: True
+# pkg_default_repo: "no"
 
-#pkg_pkgsite: "postinstall"
-#pkg_repo:
+# pkg_pkgsite: "postinstall"
+# pkg_repo:
 #  - name: "postinstall"
 #    conf:
 #      - { key: "url", value: "\"file{{ ':' }}///usr/local/poudriere/data/packages/11amd64-local-postinstall/\"" }

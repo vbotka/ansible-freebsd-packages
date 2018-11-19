@@ -11,12 +11,12 @@ pkg_install_individually: True
 pkg_default_repo: "yes"
 pkg_autoremove: no
 pkg_cached: no
-#pkg_annotation:
-#pkg_chroot:
-#pkg_jail:
-#pkg_pkgsite:
-#pkg_rootdir:
-pkg_repo: {}
+# pkg_annotation:
+# pkg_chroot:
+# pkg_jail:
+# pkg_pkgsite:
+# pkg_rootdir:
+pkg_repo: []
 pkg_dict: {}
 pkg_list: []
 pkg_list_deinstall: []
