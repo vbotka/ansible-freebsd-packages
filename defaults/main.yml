@@ -17,7 +17,7 @@ pkg_cached: no
 # pkg_pkgsite:
 # pkg_rootdir:
 pkg_repo: []
-pkg_dict: {}
+pkg_dict: []
 pkg_list: []
 pkg_list_deinstall: []
 

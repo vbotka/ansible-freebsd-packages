@@ -1,6 +1,9 @@
 ---
 # tasks for freebsd-packages
 
+- import_tasks: vars.yml
+  tags: [pkg_vars, always]
+
 - import_tasks: debug.yml
   when: pkg_debug
   tags: [pkg_debug, always]
