@@ -8,6 +8,8 @@ pkg_group: "wheel"
 
 pkg_dryrun: False
 pkg_install_individually: True
+freebsd_install_retries: 10
+freebsd_install_delay: 5
 pkg_default_repo: "yes"
 pkg_autoremove: no
 pkg_cached: no

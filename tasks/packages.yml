@@ -19,6 +19,10 @@
   with_subelements:
     - "{{ pkg_dict }}"
     - packages
+  register: result
+  retries: "{{ freebsd_install_retries }}"
+  until: result is succeeded
+  delay: "{{ freebsd_install_delay }}"
   when: pkg_install_individually
 
 - name: "packages: Install lists of packages from the dictionary"
@@ -31,6 +35,10 @@
     pkgsite: "{{ pkg_pkgsite | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
   loop: "{{ lookup('subelements', pkg_dict, 'packages') }}"
+  register: result
+  retries: "{{ freebsd_install_retries }}"
+  until: result is succeeded
+  delay: "{{ freebsd_install_delay }}"
   when: not pkg_install_individually
 
 - name: "packages: Install packages individualy from the list"
@@ -43,6 +51,10 @@
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
   loop: "{{ pkg_list }}"
+  register: result
+  retries: "{{ freebsd_install_retries }}"
+  until: result is succeeded
+  delay: "{{ freebsd_install_delay }}"
   when: pkg_install_individually
 
 - name: "packages: Install list of packages"
@@ -55,6 +67,10 @@
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
   when: not pkg_install_individually
+  register: result
+  retries: "{{ freebsd_install_retries }}"
+  until: result is succeeded
+  delay: "{{ freebsd_install_delay }}"
 
 - name: "packages: Deinstall packages individually from the list"
   pkgng:
@@ -67,6 +83,10 @@
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
   loop: "{{ pkg_list_deinstall }}"
+  register: result
+  retries: "{{ freebsd_install_retries }}"
+  until: result is succeeded
+  delay: "{{ freebsd_install_delay }}"
   when: pkg_install_individually
 
 - name: "packages: Deinstall list of packages"
@@ -79,6 +99,10 @@
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
+  register: result
+  retries: "{{ freebsd_install_retries }}"
+  until: result is succeeded
+  delay: "{{ freebsd_install_delay }}"
   when: not pkg_install_individually
 
 # EOF
