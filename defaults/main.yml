@@ -1,15 +1,18 @@
 ---
 # defaults for freebsd-packages
 
-pkg_debug: False
+freebsd_install_method: "packages"
+freebsd_install_retries: 10
+freebsd_install_delay: 5
 
 pkg_owner: "root"
 pkg_group: "wheel"
 
+pkg_debug: False
 pkg_dryrun: False
+pkg_arch_auto: False
+
 pkg_install_individually: True
-freebsd_install_retries: 10
-freebsd_install_delay: 5
 pkg_default_repo: "yes"
 pkg_autoremove: no
 pkg_cached: no
@@ -18,10 +21,11 @@ pkg_cached: no
 # pkg_jail:
 # pkg_pkgsite:
 # pkg_rootdir:
+
 pkg_repo: []
-pkg_dict: []
 pkg_list: []
 pkg_list_deinstall: []
+pkg_dict: []
 
 
 # EOF

@@ -16,9 +16,7 @@
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_pkgsite | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
-  with_subelements:
-    - "{{ pkg_dict }}"
-    - packages
+  loop: "{{ lookup('subelements', pkg_dict, 'packages') }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded
@@ -66,11 +64,11 @@
     jail: "{{ pkg_jail | default(omit) }}"
     pkgsite: "{{ pkg_site | default(omit) }}"
     rootdir: "{{ pkg_rootdir | default(omit) }}"
-  when: not pkg_install_individually
   register: result
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded
   delay: "{{ freebsd_install_delay }}"
+  when: not pkg_install_individually
 
 - name: "packages: Deinstall packages individually from the list"
   pkgng:

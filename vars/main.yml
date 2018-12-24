@@ -2,8 +2,8 @@
 # vars for freebsd-packages
 
 # pkg_debug: True
-# pkg_default_repo: "no"
 
+# pkg_default_repo: "no"
 # pkg_pkgsite: "postinstall"
 # pkg_repo:
 #  - name: "postinstall"
@@ -13,6 +13,43 @@
 #      - { key: "signature_type", value: "\"pubkey\"" }
 #      - { key: "pubkey", value: "\"/usr/local/etc/ssl/crt/poudriere.crt\"" }
 #      - { key: "enabled", value: "yes" }
+
+#pkg_arch_auto: True
+#bsd_linux_version: "c6"
+#pkg_dict_i386:
+#  - pkglist: postinstall
+#    packages:
+#      - shells/bash
+#      - editors/emacs
+#      - devel/git
+#      - archivers/gtar
+#      - ports-mgmt/pkg
+#      - ports-mgmt/portmaster
+#      - ports-mgmt/portupgrade
+#      - security/py-certbot
+#      - net/rsync
+#  - pkglist: smart
+#    packages:
+#      - sysutils/smartmontools
+#  - pkglist: procmail
+#    packages:
+#      - mail/procmail
+#  - pkglist: wpa_supplicant
+#    packages:
+#      - security/wpa_supplicant
+#  - pkglist: linux
+#    packages:
+#      - emulators/linux_base-{{ bsd_linux_version }}
+#pkg_list_i386:
+#  - shells/bash
+#  - editors/emacs
+#  - devel/git
+#  - archivers/gtar
+#  - ports-mgmt/pkg
+#  - ports-mgmt/portmaster
+#  - ports-mgmt/portupgrade
+#  - security/py-certbot
+#  - net/rsync
 
 # EOF
 ...
