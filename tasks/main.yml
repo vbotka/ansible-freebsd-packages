@@ -14,7 +14,6 @@
 - import_tasks: packages.yml
   when:
     - freebsd_install_method|lower == "packages"
-    - not pkg_dryrun
   tags: pkg_packages
 
 # EOF
