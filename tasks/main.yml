@@ -12,8 +12,7 @@
   tags: pkg_conf
 
 - import_tasks: packages.yml
-  when:
-    - freebsd_install_method|lower == "packages"
+  when: freebsd_install_method|lower == "packages"
   tags: pkg_packages
 
 # EOF
