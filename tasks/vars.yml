@@ -32,4 +32,5 @@
     - pkg_arch_auto
     - ansible_architecture == "arm64"
 
+# EOF
 ...

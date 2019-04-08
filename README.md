@@ -3,7 +3,7 @@ freebsd_packages
 
 [![Build Status](https://travis-ci.org/vbotka/ansible-freebsd-packages.svg?branch=master)](https://travis-ci.org/vbotka/ansible-freebsd-packages)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) Configure repositories for FreeBSD. Install and update packages.
+[Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) FreeBSD. Configure repositories. Install and update packages.
 
 
 Requirements

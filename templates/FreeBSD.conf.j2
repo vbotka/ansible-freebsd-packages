@@ -1,8 +1,2 @@
 # {{ ansible_managed }}
-FreeBSD: {
-  url: "pkg+http://pkg.FreeBSD.org/${ABI}/quarterly",
-  mirror_type: "srv",
-  signature_type: "fingerprints",
-  fingerprints: "/usr/share/keys/pkg",
-  enabled: {{ pkg_default_repo | default("no") }}
-}
+FreeBSD: { enabled: no }

@@ -1,5 +1,5 @@
 ---
-# tasks for freebsd-packages
+# tasks for freebsd_packages
 
 - import_tasks: vars.yml
   tags: [pkg_vars, always]

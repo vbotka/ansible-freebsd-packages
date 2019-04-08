@@ -1,21 +1,45 @@
 ---
-# defaults for freebsd-packages
+# defaults for freebsd_packages
 
+# Install params.
 freebsd_install_method: "packages"
 freebsd_install_retries: 10
 freebsd_install_delay: 5
 
+# Owner and group of the configuration files.
 pkg_owner: "root"
 pkg_group: "wheel"
 
-pkg_debug: False
-pkg_dryrun: False
-pkg_arch_auto: False
+# pkg_debug: true
+# Will print list of all variables used in the play.
+pkg_debug: false
 
-pkg_install_individually: True
-pkg_default_repo: "yes"
-pkg_autoremove: no
-pkg_cached: no
+# pkg_dryrun: true
+# Will not install the packages.
+pkg_dryrun: false
+
+# pkg_arch_auto: true
+# Automatically sellect pkg_list on ansible_architecture
+# (see tasks/vars.yml).
+pkg_arch_auto: false
+
+# pkg_backup_conf: true
+# Will create backups of the configuration files if changed.
+pkg_backup_conf: false
+
+# pkg_install_individually: false
+# Will install list of packages in one task.
+pkg_install_individually: true
+
+# pkg_default_repo: false
+# Will disable default repository configured in /etc/pkg/FreeBSD.conf
+# and template /usr/local/etc/pkg/repos/FreeBSD.conf equivalent of:
+# $ echo "FreeBSD: { enabled: no }" > /usr/local/etc/pkg/repos/FreeBSD.conf
+# (see template FreeBSD.conf.j2).
+pkg_default_repo: true
+
+pkg_autoremove: false
+pkg_cached: false
 # pkg_annotation:
 # pkg_chroot:
 # pkg_jail:

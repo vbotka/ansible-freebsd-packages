@@ -1,6 +1,6 @@
 ---
 
-- name: "Debug FreeBSD packages"
+- name: Debug
   vars:
     msg: |
          ansible_architecture [ {{ ansible_architecture }} ]
