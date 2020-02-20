@@ -1,7 +1,7 @@
 ---
 # defaults for freebsd_packages
 
-# Install params.
+# Install params
 freebsd_install_method: "packages"
 freebsd_install_retries: 10
 freebsd_install_delay: 5

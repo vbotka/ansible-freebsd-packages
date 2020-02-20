@@ -1,9 +1,9 @@
 ---
 # vars for freebsd_packages
 
-# pkg_debug: True
+# pkg_debug: true
 
-# pkg_default_repo: no
+# pkg_default_repo: false
 # pkg_pkgsite: "postinstall"
 # pkg_repo:
 #   - name: "build"

@@ -1,14 +1,15 @@
 ---
 # TODO: Implement pkgng annotation.
+# TODO: loop_control label
 
 - name: "packages: Debug list packages individualy from lists in the dictionary"
-  when: pkg_debug and pkg_install_individually
+  when: pkg_debug|bool and pkg_install_individually|bool
   debug:
     msg: "{{ item.0 }}: {{ item.1 }}"
   loop: "{{ lookup('subelements', pkg_dict, 'packages') }}"
 
 - name: "packages: Install packages individualy from lists in the dictionary"
-  when: pkg_install_individually and (not pkg_dryrun)
+  when: pkg_install_individually|bool and (not pkg_dryrun|bool)
   pkgng:
     name: "{{ item.1 }}"
     autoremove: "{{ pkg_autoremove | default(omit) }}"
@@ -24,13 +25,13 @@
   delay: "{{ freebsd_install_delay }}"
 
 - name: "packages: Debug lists of packages from the dictionary"
-  when: pkg_debug and (not pkg_install_individually)
+  when: pkg_debug|bool and (not pkg_install_individually|bool)
   debug:
     msg: "{{ item }}"
   loop: "{{ pkg_dict | json_query('[].packages') }}"
 
 - name: "packages: Install lists of packages from the dictionary"
-  when: (not pkg_install_individually) and (not pkg_dryrun)
+  when: (not pkg_install_individually|bool) and (not pkg_dryrun|bool)
   pkgng:
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove | default(omit) }}"
@@ -46,7 +47,7 @@
   delay: "{{ freebsd_install_delay }}"
 
 - name: "packages: Install packages individualy from the list"
-  when: pkg_install_individually and (not pkg_dryrun)
+  when: pkg_install_individually|bool and (not pkg_dryrun|bool)
   pkgng:
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove }}"
@@ -62,7 +63,7 @@
   delay: "{{ freebsd_install_delay }}"
 
 - name: "packages: Install list of packages"
-  when: (not pkg_install_individually) and (not pkg_dryrun)
+  when: (not pkg_install_individually|bool) and (not pkg_dryrun|bool)
   pkgng:
     name: "{{ pkg_list }}"
     autoremove: "{{ pkg_autoremove }}"
@@ -77,7 +78,7 @@
   delay: "{{ freebsd_install_delay }}"
 
 - name: "packages: Deinstall packages individually from the list"
-  when: pkg_install_individually and (not pkg_dryrun)
+  when: pkg_install_individually|bool and (not pkg_dryrun|bool)
   pkgng:
     state: absent
     name: "{{ item }}"
@@ -94,7 +95,7 @@
   delay: "{{ freebsd_install_delay }}"
 
 - name: "packages: Deinstall list of packages"
-  when: (not pkg_install_individually) and (not pkg_dryrun)
+  when: (not pkg_install_individually|bool) and (not pkg_dryrun|bool)
   pkgng:
     state: absent
     name: "{{ pkg_list_deinstall }}"

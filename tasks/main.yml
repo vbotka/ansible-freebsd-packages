@@ -5,7 +5,7 @@
   tags: [pkg_vars, always]
 
 - import_tasks: debug.yml
-  when: pkg_debug
+  when: pkg_debug|bool
   tags: [pkg_debug, always]
 
 - import_tasks: conf.yml

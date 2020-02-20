@@ -3,37 +3,37 @@
 - name: Debug
   vars:
     msg: |
-         ansible_architecture [ {{ ansible_architecture }} ]
-         ansible_os_family [ {{ ansible_os_family }} ]
-         ansible_distribution [ {{ ansible_distribution }} ]
-         ansible_distribution_major_version [ {{ ansible_distribution_major_version }} ]
-         ansible_distribution_version [ {{ ansible_distribution_version }} ]
-         ansible_distribution_release [ {{ ansible_distribution_release }} ]
+         ansible_architecture [{{ ansible_architecture }}]
+         ansible_os_family [{{ ansible_os_family }}]
+         ansible_distribution [{{ ansible_distribution }}]
+         ansible_distribution_major_version [{{ ansible_distribution_major_version }}]
+         ansible_distribution_version [{{ ansible_distribution_version }}]
+         ansible_distribution_release [{{ ansible_distribution_release }}]
 
-         freebsd_install_method [ {{ freebsd_install_method }} ]
-         freebsd_install_retries [ {{ freebsd_install_retries }} ]
-         freebsd_install_delay [ {{ freebsd_install_delay }} ]
-         pkg_dryrun [ {{ pkg_dryrun }} ]
-         pkg_arch_auto [ {{ pkg_arch_auto }} ]
-         pkg_owner [ {{ pkg_owner }} ]
-         pkg_group [ {{ pkg_group }} ]
-         pkg_install_individually [ {{ pkg_install_individually }} ]
-         pkg_autoremove [ {{ pkg_autoremove }} ]
-         pkg_cached [ {{ pkg_cached }} ]
-         pkg_annotation [ {{ pkg_annotation | default("NOT-DEFINED") }} ]
-         pkg_chroot [ {{ pkg_chroot | default("NOT-DEFINED") }} ]
-         pkg_jail [ {{ pkg_jail | default("NOT-DEFINED") }} ]
-         pkg_site [ {{ pkg_site | default("NOT-DEFINED") }} ]
-         pkg_rootdir [ {{ pkg_rootdir | default("NOT-DEFINED") }} ]
-         pkg_default_repo [ {{ pkg_default_repo }} ]
+         freebsd_install_method [{{ freebsd_install_method }}]
+         freebsd_install_retries [{{ freebsd_install_retries }}]
+         freebsd_install_delay [{{ freebsd_install_delay }}]
+         pkg_dryrun [{{ pkg_dryrun }}]
+         pkg_arch_auto [{{ pkg_arch_auto }}]
+         pkg_owner [{{ pkg_owner }}]
+         pkg_group [{{ pkg_group }}]
+         pkg_install_individually [{{ pkg_install_individually }}]
+         pkg_autoremove [{{ pkg_autoremove }}]
+         pkg_cached [{{ pkg_cached }}]
+         pkg_annotation [{{ pkg_annotation | default("NOT-DEFINED") }}]
+         pkg_chroot [{{ pkg_chroot | default("NOT-DEFINED") }}]
+         pkg_jail [{{ pkg_jail|default("NOT-DEFINED") }}]
+         pkg_site [{{ pkg_site|default("NOT-DEFINED") }}]
+         pkg_rootdir [{{ pkg_rootdir|default("NOT-DEFINED") }}]
+         pkg_default_repo [{{ pkg_default_repo }}]
          pkg_repo
-         {{ pkg_repo | to_nice_yaml }}
+         {{ pkg_repo|to_nice_yaml }}
          pkg_list
-         {{ pkg_list | to_nice_yaml }}
+         {{ pkg_list|to_nice_yaml }}
          pkg_list_deinstall
-         {{ pkg_list_deinstall | to_nice_yaml }}
+         {{ pkg_list_deinstall|to_nice_yaml }}
          pkg_dict
-         {{ pkg_dict | to_nice_yaml }}
+         {{ pkg_dict|to_nice_yaml }}
 
   debug:
     msg: "{{ msg.split('\n') }}"
