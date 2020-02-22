@@ -2,6 +2,9 @@
 # TODO: Implement pkgng annotation.
 # TODO: loop_control label
 
+# INSTALL
+
+# Individualy from dictionary
 - name: "packages: Debug list packages individualy from lists in the dictionary"
   when: pkg_debug|bool and pkg_install_individually|bool
   debug:
@@ -24,6 +27,7 @@
   until: result is succeeded
   delay: "{{ freebsd_install_delay }}"
 
+# List from dictionary
 - name: "packages: Debug lists of packages from the dictionary"
   when: pkg_debug|bool and (not pkg_install_individually|bool)
   debug:
@@ -46,6 +50,7 @@
   until: result is succeeded
   delay: "{{ freebsd_install_delay }}"
 
+# Individualy from list
 - name: "packages: Install packages individualy from the list"
   when: pkg_install_individually|bool and (not pkg_dryrun|bool)
   pkgng:
@@ -62,6 +67,7 @@
   until: result is succeeded
   delay: "{{ freebsd_install_delay }}"
 
+# List
 - name: "packages: Install list of packages"
   when: (not pkg_install_individually|bool) and (not pkg_dryrun|bool)
   pkgng:
@@ -76,6 +82,8 @@
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded
   delay: "{{ freebsd_install_delay }}"
+
+# DEINSTALL
 
 - name: "packages: Deinstall packages individually from the list"
   when: pkg_install_individually|bool and (not pkg_dryrun|bool)
