@@ -18,10 +18,9 @@ pkg_debug: false
 # Will not install the packages.
 pkg_dryrun: false
 
-# pkg_arch_auto: true
-# Automatically sellect pkg_list on ansible_architecture
-# (see tasks/vars.yml).
-pkg_arch_auto: false
+# pkg_select_all: true
+# Sellect all packages (see tasks/vars.yml).
+pkg_select_all: false
 
 # pkg_backup_conf: true
 # Will create backups of the configuration files if changed.
@@ -50,6 +49,7 @@ pkg_repo: []
 pkg_list: []
 pkg_list_deinstall: []
 pkg_dict: []
+pkg_dict_select: []
 
 # EOF
 ...
