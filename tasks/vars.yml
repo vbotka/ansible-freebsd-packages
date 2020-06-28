@@ -15,7 +15,7 @@
       pkg_dict {{ ansible_architecture }}
       {{ lookup('vars', 'pkg_dict_' + ansible_architecture)|default([])|to_nice_yaml }}
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
   when: pkg_debug|bool
 
 - name: "vars: Select all packages for {{ ansible_architecture }}"

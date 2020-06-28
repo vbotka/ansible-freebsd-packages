@@ -16,11 +16,11 @@
   pkgng:
     name: "{{ item.1 }}"
     autoremove: "{{ pkg_autoremove | default(omit) }}"
-    cached: "{{ pkg_cached | default(omit) }}"
-    chroot: "{{ pkg_chroot | default(omit) }}"
-    jail: "{{ pkg_jail | default(omit) }}"
-    pkgsite: "{{ pkg_pkgsite | default(omit) }}"
-    rootdir: "{{ pkg_rootdir | default(omit) }}"
+    cached: "{{ pkg_cached|default(omit) }}"
+    chroot: "{{ pkg_chroot|default(omit) }}"
+    jail: "{{ pkg_jail|default(omit) }}"
+    pkgsite: "{{ pkg_pkgsite|default(omit) }}"
+    rootdir: "{{ pkg_rootdir|default(omit) }}"
   loop: "{{ lookup('subelements', pkg_dict, 'packages') }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
@@ -32,19 +32,19 @@
   when: pkg_debug|bool and (not pkg_install_individually|bool)
   debug:
     msg: "{{ item }}"
-  loop: "{{ pkg_dict | json_query('[].packages') }}"
+  loop: "{{ pkg_dict|json_query('[].packages') }}"
 
 - name: "packages: Install lists of packages from the dictionary"
   when: (not pkg_install_individually|bool) and (not pkg_dryrun|bool)
   pkgng:
     name: "{{ item }}"
-    autoremove: "{{ pkg_autoremove | default(omit) }}"
-    cached: "{{ pkg_cached | default(omit) }}"
-    chroot: "{{ pkg_chroot | default(omit) }}"
-    jail: "{{ pkg_jail | default(omit) }}"
-    pkgsite: "{{ pkg_pkgsite | default(omit) }}"
-    rootdir: "{{ pkg_rootdir | default(omit) }}"
-  loop: "{{ pkg_dict | json_query('[].packages') }}"
+    autoremove: "{{ pkg_autoremove|default(omit) }}"
+    cached: "{{ pkg_cached|default(omit) }}"
+    chroot: "{{ pkg_chroot|default(omit) }}"
+    jail: "{{ pkg_jail|default(omit) }}"
+    pkgsite: "{{ pkg_pkgsite|default(omit) }}"
+    rootdir: "{{ pkg_rootdir|default(omit) }}"
+  loop: "{{ pkg_dict|json_query('[].packages') }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded
@@ -57,10 +57,10 @@
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove }}"
     cached: "{{ pkg_cached }}"
-    chroot: "{{ pkg_chroot | default(omit) }}"
-    jail: "{{ pkg_jail | default(omit) }}"
-    pkgsite: "{{ pkg_site | default(omit) }}"
-    rootdir: "{{ pkg_rootdir | default(omit) }}"
+    chroot: "{{ pkg_chroot|default(omit) }}"
+    jail: "{{ pkg_jail|default(omit) }}"
+    pkgsite: "{{ pkg_site|default(omit) }}"
+    rootdir: "{{ pkg_rootdir|default(omit) }}"
   loop: "{{ pkg_list }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
@@ -74,10 +74,10 @@
     name: "{{ pkg_list }}"
     autoremove: "{{ pkg_autoremove }}"
     cached: "{{ pkg_cached }}"
-    chroot: "{{ pkg_chroot | default(omit) }}"
-    jail: "{{ pkg_jail | default(omit) }}"
-    pkgsite: "{{ pkg_site | default(omit) }}"
-    rootdir: "{{ pkg_rootdir | default(omit) }}"
+    chroot: "{{ pkg_chroot|default(omit) }}"
+    jail: "{{ pkg_jail|default(omit) }}"
+    pkgsite: "{{ pkg_site|default(omit) }}"
+    rootdir: "{{ pkg_rootdir|default(omit) }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded
@@ -92,10 +92,10 @@
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove }}"
     cached: "{{ pkg_cached }}"
-    chroot: "{{ pkg_chroot | default(omit) }}"
-    jail: "{{ pkg_jail | default(omit) }}"
-    pkgsite: "{{ pkg_site | default(omit) }}"
-    rootdir: "{{ pkg_rootdir | default(omit) }}"
+    chroot: "{{ pkg_chroot|default(omit) }}"
+    jail: "{{ pkg_jail|default(omit) }}"
+    pkgsite: "{{ pkg_site|default(omit) }}"
+    rootdir: "{{ pkg_rootdir|default(omit) }}"
   loop: "{{ pkg_list_deinstall }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
@@ -109,10 +109,10 @@
     name: "{{ pkg_list_deinstall }}"
     autoremove: "{{ pkg_autoremove }}"
     cached: "{{ pkg_cached }}"
-    chroot: "{{ pkg_chroot | default(omit) }}"
-    jail: "{{ pkg_jail | default(omit) }}"
-    pkgsite: "{{ pkg_site | default(omit) }}"
-    rootdir: "{{ pkg_rootdir | default(omit) }}"
+    chroot: "{{ pkg_chroot|default(omit) }}"
+    jail: "{{ pkg_jail|default(omit) }}"
+    pkgsite: "{{ pkg_site|default(omit) }}"
+    rootdir: "{{ pkg_rootdir|default(omit) }}"
   register: result
   retries: "{{ freebsd_install_retries }}"
   until: result is succeeded

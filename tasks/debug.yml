@@ -3,43 +3,43 @@
 - name: Debug
   vars:
     msg: |
-         ansible_architecture [{{ ansible_architecture }}]
-         ansible_os_family [{{ ansible_os_family }}]
-         ansible_distribution [{{ ansible_distribution }}]
-         ansible_distribution_major_version [{{ ansible_distribution_major_version }}]
-         ansible_distribution_version [{{ ansible_distribution_version }}]
-         ansible_distribution_release [{{ ansible_distribution_release }}]
+      ansible_architecture [{{ ansible_architecture }}]
+      ansible_os_family [{{ ansible_os_family }}]
+      ansible_distribution [{{ ansible_distribution }}]
+      ansible_distribution_major_version [{{ ansible_distribution_major_version }}]
+      ansible_distribution_version [{{ ansible_distribution_version }}]
+      ansible_distribution_release [{{ ansible_distribution_release }}]
 
-         freebsd_install_method [{{ freebsd_install_method }}]
-         freebsd_install_retries [{{ freebsd_install_retries }}]
-         freebsd_install_delay [{{ freebsd_install_delay }}]
-         pkg_dryrun [{{ pkg_dryrun }}]
-         pkg_select_all [{{ pkg_select_all }}]
-         pkg_owner [{{ pkg_owner }}]
-         pkg_group [{{ pkg_group }}]
-         pkg_install_individually [{{ pkg_install_individually }}]
-         pkg_autoremove [{{ pkg_autoremove }}]
-         pkg_cached [{{ pkg_cached }}]
-         pkg_annotation [{{ pkg_annotation | default("UNDEFINED") }}]
-         pkg_chroot [{{ pkg_chroot | default("UNDEFINED") }}]
-         pkg_jail [{{ pkg_jail|default("UNDEFINED") }}]
-         pkg_site [{{ pkg_site|default("UNDEFINED") }}]
-         pkg_rootdir [{{ pkg_rootdir|default("UNDEFINED") }}]
-         pkg_default_repo [{{ pkg_default_repo }}]
+      freebsd_install_method [{{ freebsd_install_method }}]
+      freebsd_install_retries [{{ freebsd_install_retries }}]
+      freebsd_install_delay [{{ freebsd_install_delay }}]
+      pkg_dryrun [{{ pkg_dryrun }}]
+      pkg_select_all [{{ pkg_select_all }}]
+      pkg_owner [{{ pkg_owner }}]
+      pkg_group [{{ pkg_group }}]
+      pkg_install_individually [{{ pkg_install_individually }}]
+      pkg_autoremove [{{ pkg_autoremove }}]
+      pkg_cached [{{ pkg_cached }}]
+      pkg_annotation [{{ pkg_annotation | default("UNDEFINED") }}]
+      pkg_chroot [{{ pkg_chroot | default("UNDEFINED") }}]
+      pkg_jail [{{ pkg_jail|default("UNDEFINED") }}]
+      pkg_site [{{ pkg_site|default("UNDEFINED") }}]
+      pkg_rootdir [{{ pkg_rootdir|default("UNDEFINED") }}]
+      pkg_default_repo [{{ pkg_default_repo }}]
 
-         pkg_repo
-         {{ pkg_repo|to_nice_yaml }}
-         pkg_list
-         {{ pkg_list|sort|to_nice_yaml }}
-         pkg_list_deinstall
-         {{ pkg_list_deinstall|sort|to_nice_yaml }}
-         pkg_dict
-         {{ pkg_dict|sort|to_nice_yaml }}
-         pkg_dict_select
-         {{ pkg_dict_select|sort|to_yaml }}
+      pkg_repo
+      {{ pkg_repo|to_nice_yaml }}
+      pkg_list
+      {{ pkg_list|sort|to_nice_yaml }}
+      pkg_list_deinstall
+      {{ pkg_list_deinstall|sort|to_nice_yaml }}
+      pkg_dict
+      {{ pkg_dict|sort|to_nice_yaml }}
+      pkg_dict_select
+      {{ pkg_dict_select|sort(attribute='list')|to_yaml }}
 
   debug:
-    msg: "{{ msg.split('\n') }}"
+    msg: "{{ msg.split('\n')[:-1] }}"
 
 # EOF
 ...
