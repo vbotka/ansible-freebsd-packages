@@ -10,7 +10,7 @@
 #   - name: "build"
 #     conf:
 #       - {key: "url",
-#          value: "\"pkg+http{{ ':' }}//build.plane.g2.netng.org/packages/12i386-local-default\""}
+#          value: "\"pkg+http{{ ':' }}//build.example.com/packages/12i386-local-default\""}
 #       - {key: "enabled", value: "yes"}
 #       - {key: "mirror_type", value: "\"srv\""}
 #
