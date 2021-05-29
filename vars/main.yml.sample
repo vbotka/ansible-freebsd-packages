@@ -4,19 +4,22 @@
 # pkg_debug: true
 
 # pkg_default_repo: false
-# pkg_pkgsite: "postinstall"
+# pkg_pkgsite: postinstall
 #
 # pkg_repo:
-#   - name: "build"
+#   - name: build
 #     conf:
-#       - {key: "url",
-#          value: "\"pkg+http{{ ':' }}//build.example.com/packages/12i386-local-default\""}
-#       - {key: "enabled", value: "yes"}
-#       - {key: "mirror_type", value: "\"srv\""}
+#       - key: url
+#         value: '"pkg+http://build.example.com/packages/12i386-local-default"'
+#       - key: enabled
+#         value: "yes"
+#       - key: mirror_type
+#         value: '"srv"'
+#
+# See vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
 #
 # bsd_linux_version: "c6"
-#
-# pkg_dict_i386:
+# pkg_dict_amd64:
 #   - pkglist: postinstall
 #     packages:
 #       - shells/bash
@@ -41,7 +44,7 @@
 #     packages:
 #       - emulators/linux_base-{{ bsd_linux_version }}
 #
-# pkg_list_i386:
+# pkg_list_amd64:
 #   - shells/bash
 #   - editors/emacs
 #   - devel/git
