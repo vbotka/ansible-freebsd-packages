@@ -11,7 +11,9 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 
 ## Requirements
 
-None.
+### Collections
+
+- community.general
 
 
 ## Variables
@@ -27,17 +29,20 @@ Review the defaults and examples in vars.
 shell> ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 'sudo pw usermod user -s /bin/sh'
 ```
 
-2) Install role
+2) Install role and collections
 
 ```
-shell> ansible-galaxy install vbotka.freebsd_packages
+shell> ansible-galaxy role install vbotka.freebsd_packages
+shell> ansible-galaxy collection install community.general
 ```
 
-3) Change variables
+3) Change variables, e.g. in vars/main.yml
 
 ```
 shell> edit vbotka.freebsd_packages/vars/main.yml
 ```
+
+See vars/main.yml.sample. See vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
 
 4) Create playbook
 
@@ -49,7 +54,40 @@ shell> cat freebsd-packages.yml
     - vbotka.freebsd_packages
 ```
 
-5) Configure the system
+5) Manage the packages
+
+Check syntax
+
+```
+shell> ansible-playbook freebsd-packages.yml --syntax-check
+```
+
+Display variables
+
+```
+shell> ansible-playbook freebsd-packages.yml -e pkg_debug=true -t pkg_debug
+```
+
+Dry-run the playbook and display changes
+
+```
+shell> ansible-playbook freebsd-packages.yml --check --diff
+```
+
+Optionally, configure repositories in a separate step. This will enable to display actual dry-run of
+the installation.
+
+```
+shell> ansible-playbook freebsd-packages.yml -t pkg_conf
+```
+
+Dry-run the installation of the packages
+
+```
+shell> ansible-playbook freebsd-packages.yml -e pkg_dryrun=true
+```
+
+Manage the packages if all seems to be right
 
 ```
 shell> ansible-playbook freebsd-packages.yml

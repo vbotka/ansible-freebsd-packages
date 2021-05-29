@@ -18,4 +18,6 @@ galaxy_info:
     - packages
     - repos
 dependencies: []
+collections:
+  - community.general
 ...

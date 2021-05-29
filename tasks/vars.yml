@@ -2,7 +2,7 @@
 
 - name: "vars: Debug for {{ ansible_architecture }}"
   vars:
-    msg: |
+    msg: |-
       pkg_list
       {{ pkg_list|to_nice_yaml }}
       pkg_dict
@@ -14,27 +14,27 @@
       {{ lookup('vars', 'pkg_list_' + ansible_architecture)|default([])|to_nice_yaml }}
       pkg_dict {{ ansible_architecture }}
       {{ lookup('vars', 'pkg_dict_' + ansible_architecture)|default([])|to_nice_yaml }}
-  debug:
-    msg: "{{ msg.split('\n')[:-1] }}"
+  ansible.builtin.debug:
+    msg: "{{ msg.split('\n') }}"
   when: pkg_debug|bool
 
 - name: "vars: Select all packages for {{ ansible_architecture }}"
-  set_fact:
+  ansible.builtin.set_fact:
     pkg_dict: "{{ pkg_dict + lookup('vars', 'pkg_dict_' + ansible_architecture)|default([]) }}"
     pkg_list: "{{ pkg_list + lookup('vars', 'pkg_list_' + ansible_architecture)|default([]) }}"
   when: pkg_select_all|bool
 
 - name: "vars: Select list of packages for {{ ansible_architecture }}"
-  set_fact:
+  ansible.builtin.set_fact:
     pkg_list: "{{ pkg_list + lookup('vars', 'pkg_dict_' + ansible_architecture)|json_query(query) }}"
   loop: "{{ pkg_dict_select }}"
   vars:
     query: "[?pkglist=='{{ item.list }}'].packages"
   when: item.enabled
 
-- name: "vars: Flatten, unique, and sort packages"
-  set_fact:
-    pkg_list: "{{ pkg_list|flatten|unique|sort }}"
+- name: "vars: Default emply, flatten, unique, and sort packages"
+  ansible.builtin.set_fact:
+    pkg_list: "{{ pkg_list|default([])|flatten|unique|sort }}"
 
 # EOF
 ...

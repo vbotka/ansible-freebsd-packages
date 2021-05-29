@@ -4,7 +4,7 @@
 
 # Install individualy from dictionary - - - - - - - - - - - - - - - - - - - - - - - - - -
 - name: "packages: Debug list packages individualy from lists in the dictionary"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ item.0 }}: {{ item.1 }}"
   loop: "{{ lookup('subelements', pkg_dict, 'packages') }}"
   when:
@@ -12,7 +12,7 @@
     - pkg_install_individually|bool
 
 - name: "packages: Install packages individualy from lists in the dictionary"
-  pkgng:
+  community.general.pkgng:
     name: "{{ item.1 }}"
     autoremove: "{{ pkg_autoremove | default(omit) }}"
     cached: "{{ pkg_cached|default(omit) }}"
@@ -31,7 +31,7 @@
 
 # Install lists from dictionary - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - name: "packages: Debug lists of packages from the dictionary"
-  debug:
+  ansible.builtin.debug:
     msg: "{{ item }}"
   loop: "{{ pkg_dict|json_query('[].packages') }}"
   when:
@@ -39,7 +39,7 @@
     - not pkg_install_individually|bool
 
 - name: "packages: Install lists of packages from the dictionary"
-  pkgng:
+  community.general.pkgng:
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove|default(omit) }}"
     cached: "{{ pkg_cached|default(omit) }}"
@@ -58,7 +58,7 @@
 
 # Install individualy from list - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - name: "packages: Install packages individualy from the list"
-  pkgng:
+  community.general.pkgng:
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove }}"
     cached: "{{ pkg_cached }}"
@@ -77,7 +77,7 @@
 
 # Install list - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - name: "packages: Install list of packages"
-  pkgng:
+  community.general.pkgng:
     name: "{{ pkg_list }}"
     autoremove: "{{ pkg_autoremove }}"
     cached: "{{ pkg_cached }}"
@@ -98,7 +98,7 @@
 
 # Deinstall individually from list - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - name: "packages: Deinstall packages individually from the list"
-  pkgng:
+  community.general.pkgng:
     state: absent
     name: "{{ item }}"
     autoremove: "{{ pkg_autoremove }}"
@@ -118,7 +118,7 @@
 
 # Deinstall list - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - name: "packages: Deinstall list of packages"
-  pkgng:
+  community.general.pkgng:
     state: absent
     name: "{{ pkg_list_deinstall }}"
     autoremove: "{{ pkg_autoremove }}"

@@ -1,7 +1,7 @@
 ---
 
 - name: "conf: Create /usr/local/etc/pkg"
-  file:
+  ansible.builtin.file:
     state: directory
     path: /usr/local/etc/pkg
     owner: "{{ pkg_owner }}"
@@ -9,7 +9,7 @@
     mode: "0755"
 
 - name: "conf: Create /usr/local/etc/pkg/repos"
-  file:
+  ansible.builtin.file:
     state: directory
     path: /usr/local/etc/pkg/repos
     owner: "{{ pkg_owner }}"
@@ -17,23 +17,23 @@
     mode: "0755"
 
 - name: "conf: Configure /usr/local/etc/pkg/repos/FreeBSD.conf"
-  when: not pkg_default_repo|bool
-  template:
+  ansible.builtin.template:
     src: FreeBSD.conf.j2
     dest: /usr/local/etc/pkg/repos/FreeBSD.conf
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
     mode: "0644"
     backup: "{{ pkg_backup_conf }}"
+  when: not pkg_default_repo|bool
 
 - name: "conf: Remove /usr/local/etc/pkg/repos/FreeBSD.conf"
-  when: pkg_default_repo|bool
-  file:
+  ansible.builtin.file:
     state: absent
     path: /usr/local/etc/pkg/repos/FreeBSD.conf
+  when: pkg_default_repo|bool
 
 - name: "conf: Configure package repositories"
-  template:
+  ansible.builtin.template:
     src: repo.j2
     dest: "/usr/local/etc/pkg/repos/{{ item.name }}.conf"
     owner: "{{ pkg_owner }}"
