@@ -20,17 +20,16 @@
 #
 # bsd_linux_version: "c6"
 # pkg_dict_amd64:
-#   - pkglist: postinstall
+#   - pkglist: minimal
 #     packages:
 #       - shells/bash
-#       - editors/emacs
 #       - devel/git
 #       - archivers/gtar
 #       - ports-mgmt/pkg
 #       - ports-mgmt/portmaster
 #       - ports-mgmt/portupgrade
-#       - security/py-certbot
 #       - net/rsync
+#       - ftp/wget
 #   - pkglist: smart
 #     packages:
 #       - sysutils/smartmontools
@@ -46,21 +45,23 @@
 #
 # pkg_list_amd64:
 #   - shells/bash
-#   - editors/emacs
 #   - devel/git
 #   - archivers/gtar
 #   - ports-mgmt/pkg
 #   - ports-mgmt/portmaster
 #   - ports-mgmt/portupgrade
-#   - security/py-certbot
 #   - net/rsync
+#   - ftp/wget
 #
-# pkg_select_all: true
+# pkg_dict_all: false
 #
 # pkg_dict_select:
-#   - {enabled: false, list: apcups}
-#   - {enabled: false, list: bind}
-#   - {enabled: true, list: apache}
+#   - minimal
+#
+# # Select the list from fp_packages. See vbotka.freebsd_postinstall
+# pkg_dict_select: "{{ fp_packages|selectattr('enabled')|
+#                                  map(attribute='list')|
+#                                  list|unique|sort }}"
 
 # EOF
 ...

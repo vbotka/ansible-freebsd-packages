@@ -6,29 +6,35 @@ freebsd_install_method: packages
 freebsd_install_retries: 10
 freebsd_install_delay: 5
 
-# Owner and group of the configuration files.
-pkg_owner: root
-pkg_group: wheel
-
 # pkg_debug: true
 # Will print list of all variables used in the play.
 pkg_debug: false
 
 # pkg_dryrun: true
-# Will not install the packages.
+# Do not install/deinstall packages
 pkg_dryrun: false
 
-# pkg_select_all: true
-# Sellect all packages (see tasks/vars.yml).
-pkg_select_all: false
+# See vars/main.yml.sample and tasks/vars.yml
+# pkg_dict: []
+# pkg_list: []
+pkg_list_deinstall: []
 
-# pkg_backup_conf: true
-# Will create backups of the configuration files if changed.
-pkg_backup_conf: false
+# Sellect all lists from pkg_dict
+pkg_dict_all: false
+# Sellect lists from pkg_dict
+pkg_dict_select: []
 
 # pkg_install_individually: false
 # Will install list of packages in one task.
 pkg_install_individually: true
+
+# Owner and group of the configuration files.
+pkg_owner: root
+pkg_group: wheel
+
+# pkg_backup_conf: true
+# Will create backups of the configuration files if changed.
+pkg_backup_conf: false
 
 # pkg_default_repo: false
 # Will disable default repository configured in /etc/pkg/FreeBSD.conf
@@ -45,11 +51,8 @@ pkg_cached: false
 # pkg_pkgsite:
 # pkg_rootdir:
 
+# See vars/main.yml.sample
 pkg_repo: []
-pkg_list: []
-pkg_list_deinstall: []
-pkg_dict: []
-pkg_dict_select: []
 
 # EOF
 ...
