@@ -18,7 +18,7 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 
 ## Variables
 
-Review the defaults and examples in vars.
+See the defaults and examples in vars.
 
 
 ## Workflow

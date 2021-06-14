@@ -1,17 +1,21 @@
 ---
 # tasks for freebsd_packages
 
-- import_tasks: vars.yml
+- name: Import vars.yml
+  ansible.builtin.import_tasks: vars.yml
   tags: [pkg_vars, always]
 
-- import_tasks: debug.yml
+- name: Import debug.yml
+  ansible.builtin.import_tasks: debug.yml
   when: pkg_debug|bool
   tags: [pkg_debug, always]
 
-- import_tasks: conf.yml
+- name: Import conf.yml
+  ansible.builtin.import_tasks: conf.yml
   tags: pkg_conf
 
-- import_tasks: packages.yml
+- name: Import packages.yml
+  ansible.builtin.import_tasks: packages.yml
   when: freebsd_install_method|lower == "packages"
   tags: pkg_packages
 
