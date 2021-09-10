@@ -1,5 +1,17 @@
 ---
 
+- name: "conf: Configure /etc/pkg/FreeBSD.conf"
+  ansible.builtin.template:
+    src: repo.j2
+    dest: "/etc/pkg/FreeBSD.conf"
+    owner: "{{ pkg_owner }}"
+    group: "{{ pkg_group }}"
+    mode: "0644"
+    backup: "{{ pkg_backup_conf }}"
+  loop: "{{ pkg_default_repo_conf }}"
+  loop_control:
+    label: "{{ item.name }}"
+
 - name: "conf: Create /usr/local/etc/pkg"
   ansible.builtin.file:
     state: directory
