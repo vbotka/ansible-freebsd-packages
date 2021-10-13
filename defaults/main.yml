@@ -42,6 +42,20 @@ pkg_backup_conf: false
 # $ echo "FreeBSD: { enabled: no }" > /usr/local/etc/pkg/repos/FreeBSD.conf
 # (see template FreeBSD.conf.j2).
 pkg_default_repo: true
+pkg_default_repo_url: '"pkg+http://pkg.FreeBSD.org/${ABI}/latest"'
+pkg_default_repo_conf:
+  - name: FreeBSD
+    conf:
+      - key: mirror_type
+        value: '"srv"'
+      - key: signature_type
+        value: '"fingerprints"'
+      - key: fingerprints
+        value: '"/usr/share/keys/pkg"'
+      - key: enabled
+        value: "true"
+      - key: url
+        value: "{{ pkg_default_repo_url }}"
 
 pkg_autoremove: false
 pkg_cached: false
