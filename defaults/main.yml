@@ -6,12 +6,16 @@ freebsd_install_method: packages
 freebsd_install_retries: 10
 freebsd_install_delay: 5
 
+# Create backups of the configuration files if changed.
+# pkg_backup_conf: true
+pkg_backup_conf: false
+
+# Print resutls and lists of variables.
 # pkg_debug: true
-# Will print list of all variables used in the play.
 pkg_debug: false
 
-# pkg_dryrun: true
 # Do not install/deinstall packages
+# pkg_dryrun: true
 pkg_dryrun: false
 
 # See vars/main.yml.sample and tasks/vars.yml
@@ -20,53 +24,54 @@ pkg_dryrun: false
 pkg_list_deinstall: []
 
 # Sellect all lists from pkg_dict
+# pkg_dict_all: true
 pkg_dict_all: false
+
 # Sellect lists from pkg_dict
 pkg_dict_select: []
 
-# pkg_install_individually: false
-# Will install list of packages in one task.
-pkg_install_individually: true
+# Indivindually install packages from a list (not recommended).
+# Quoting from community.general.pkgng: "When used with
+# a loop: each package will be processed individually, it is much more
+# efficient to pass the list directly to the name option."
+# pkg_install_individually: true
+pkg_install_individually: false
 
 # Owner and group of the configuration files.
 pkg_owner: root
 pkg_group: wheel
 
-# pkg_backup_conf: true
-# Will create backups of the configuration files if changed.
-pkg_backup_conf: false
+# /etc/pkg/FreeBSD.conf
+pkg_default_repo_enabled: 'yes'
+pkg_default_repo_url: pkg+http://pkg.FreeBSD.org/${ABI}/quarterly
+pkg_default_repo:
+  name: FreeBSD
+  conf:
+    - {key: url, value: '"{{ pkg_default_repo_url }}"'}
+    - {key: mirror_type, value: '"srv"'}
+    - {key: signature_type, value: '"fingerprints"'}
+    - {key: fingerprints, value: '"/usr/share/keys/pkg"'}
+    - {key: enabled, value: "{{ pkg_default_repo_enabled }}"}
+pkg_default_repo_template: repo.j2
+pkg_default_repo_conf: []
+# - "{{ pkg_default_repo }}"
 
-# pkg_default_repo: false
-# Will disable default repository configured in /etc/pkg/FreeBSD.conf
-# and template /usr/local/etc/pkg/repos/FreeBSD.conf equivalent of:
-# $ echo "FreeBSD: { enabled: no }" > /usr/local/etc/pkg/repos/FreeBSD.conf
-# (see template FreeBSD.conf.j2).
-pkg_default_repo: true
-pkg_default_repo_url: '"pkg+http://pkg.FreeBSD.org/${ABI}/latest"'
-pkg_default_repo_conf:
-  - name: FreeBSD
-    conf:
-      - key: mirror_type
-        value: '"srv"'
-      - key: signature_type
-        value: '"fingerprints"'
-      - key: fingerprints
-        value: '"/usr/share/keys/pkg"'
-      - key: enabled
-        value: "true"
-      - key: url
-        value: "{{ pkg_default_repo_url }}"
+# /usr/local/etc/pkg/repos
+pkg_repos_template: repo.j2
+pkg_repos_conf: []
+# - "{{ pkg_default_repo }}"
 
-pkg_autoremove: false
-pkg_cached: false
-# pkg_annotation:
-# pkg_chroot:
-# pkg_jail:
-# pkg_pkgsite:
-# pkg_rootdir:
-
-# See vars/main.yml.sample
-pkg_repo: []
+# Optional parameters of the module community.general.pkgng
+# pkg_annotation: <list of strings>
+# pkg_autoremove: false
+# pkg_cached: false
+# pkg_chroot: <path>
+# pkg_ignore_osver: false
+# pkg_jail: <jail name or id>
+# pkg_pkgsite: <name of a repository configured in /usr/local/etc/pkg/repos>
+# pkg_pkgsite: FreeBSD
+# pkg_rootdir: <path>
+# pkg_state: present
 
 # EOF
 ...

@@ -3,19 +3,36 @@
 
 # pkg_debug: true
 
-# pkg_default_repo: false
-# pkg_pkgsite: postinstall
-#
-# pkg_repo:
+# In /usr/local/etc/pkg/repos/ declare Poudriere repo
+# pkg_pkgsite: build
+# pkg_repos_conf:
 #   - name: build
 #     conf:
-#       - key: url
-#         value: '"pkg+http://build.example.com/packages/12i386-local-default"'
-#       - key: enabled
-#         value: "yes"
-#       - key: mirror_type
-#         value: '"srv"'
-#
+#       - {key: url, value: '"pkg+http://build.example.com/packages/12i386-local-default"'}
+#       - {key: mirror_type, value: '"srv"'}
+#       - {key: enabled, value: 'yes'}
+
+# In /usr/local/etc/pkg/repos/ disable default repo FreeBSD, declared
+# in /etc/pkg/FreeBSD.conf, and declare repos FreeBSD_quarterly, FreeBSD_latest
+# pkg_repos_conf:
+#   - name: FreeBSD
+#     conf:
+#       - {key: enabled, value: 'no'}
+#   - name: FreeBSD_quarterly
+#     conf:
+#       - {key: url, value: '"pkg+http://pkg.FreeBSD.org/${ABI}/quarterly"'}
+#       - {key: mirror_type, value: '"srv"'}
+#       - {key: signature_type, value: '"fingerprints"'}
+#       - {key: fingerprints, value: '"/usr/share/keys/pkg"'}
+#       - {key: enabled, value: 'yes'}
+#   - name: FreeBSD_latest
+#     conf:
+#       - {key: url, value: '"pkg+http://pkg.FreeBSD.org/${ABI}/latest"'}
+#       - {key: mirror_type, value: '"srv"'}
+#       - {key: signature_type, value: '"fingerprints"'}
+#       - {key: fingerprints, value: '"/usr/share/keys/pkg"'}
+#       - {key: enabled, value: 'yes'}
+
 # See vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
 #
 # bsd_linux_version: "c6"
