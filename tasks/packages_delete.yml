@@ -59,11 +59,11 @@
       ansible.builtin.debug:
         var: result
       when: pkg_debug|bool
-  tags: pkg_packages_delete_list_indivindually
 
   when:
     - pkg_list_deinstall|length > 0
     - pkg_install_individually|bool
+  tags: pkg_packages_delete_list_indivindually
 
 # EOF
 ...
