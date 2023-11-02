@@ -5,17 +5,26 @@ vbotka.freebsd_packages 2.4 Release Notes
 .. contents:: Topics
 
 
-2.4.0
+2.4.1
 =====
-
 
 Release Summary
 ---------------
+Add tasks stat.yml. Optionally create dictionary of vulnerabilities
+pkg_audit.
 
+Minor Changes
+-------------
+- Add variables: pkg_stat, pkg_audit_enable (default=false)
+
+2.4.0
+=====
+
+Release Summary
+---------------
 Simplified configuration of repositories. Single unified template
 repo.j2 for repositories. Simplified configuration of optional
 parameters of *community.general.pkgng*
-
 
 Major Changes
 -------------
@@ -31,11 +40,9 @@ Major Changes
 - README; Add examples.
 - vars/main.yml.sample; Add examples.
 
-
 Minor Changes
 -------------
 - Debug formatting
-
 
 Breaking Changes / Porting Guide
 --------------------------------

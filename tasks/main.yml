@@ -39,5 +39,10 @@
       state:  "{{ pkg_state|default(omit) }}"
   when: freebsd_install_method|lower == 'packages'
 
+- name: Import stat.yml
+  ansible.builtin.import_tasks: stat.yml
+  when: pkg_stat|bool
+  tags: pkg_stat
+
 # EOF
 ...

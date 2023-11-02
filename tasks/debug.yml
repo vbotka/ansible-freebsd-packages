@@ -49,6 +49,8 @@
       pkg_dict_all: {{ pkg_dict_all }}
       pkg_dict_select:
         {{ pkg_dict_select|to_nice_yaml(indent=2)|indent(2) }}
+      pkg_stat: {{ pkg_stat }}
+      pkg_audit_enable: {{ pkg_audit_enable }}
 
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
