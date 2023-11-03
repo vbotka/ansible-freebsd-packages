@@ -5,6 +5,18 @@ vbotka.freebsd_packages 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.2
+=====
+
+Release Summary
+---------------
+Update vars.yml
+
+Minor Changes
+-------------
+- Update vars.yml
+
+
 2.4.1
 =====
 
@@ -16,6 +28,7 @@ pkg_audit.
 Minor Changes
 -------------
 - Add variables: pkg_stat, pkg_audit_enable (default=false)
+
 
 2.4.0
 =====
