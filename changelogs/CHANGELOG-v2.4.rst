@@ -5,6 +5,18 @@ vbotka.freebsd_packages 2.4 Release Notes
 .. contents:: Topics
 
 
+2.4.3
+=====
+
+Release Summary
+---------------
+Bugfixes.
+
+Bugfixes
+--------
+* Fix README
+  
+
 2.4.2
 =====
 
