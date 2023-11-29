@@ -15,7 +15,7 @@ Bugfixes.
 Bugfixes
 --------
 * Fix README
-  
+
 
 2.4.2
 =====
