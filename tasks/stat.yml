@@ -1,32 +1,27 @@
 ---
+- when: pkg_audit_enable|d(bool)
 
-- block:
-
-    - name: "stat: Get pkg audit"
+  # EOF
+  block:
+    - name: "Stat: Get pkg audit"
       ansible.builtin.command: pkg audit -q -F -Rjson-compact
       register: pkg_audit_out
       changed_when: false
-      failed_when: pkg_audit_out.rc > 1  # rc=1 if pkg_count != 0
+      failed_when: pkg_audit_out.rc > 1 # rc=1 if pkg_count != 0
 
-    - name: "stat: Debug pkg audit"
+    - name: "Stat: Debug pkg audit"
       ansible.builtin.debug:
         var: pkg_audit
       when: pkg_debug|bool
       run_once: true
 
   rescue:
-
-    - name: "stat: rescue: Debug"
+    - name: "Stat: rescue: Debug"
       ansible.builtin.debug:
         msg: |
           [ERR] Get pkg audit failed:
           {{ ansible_failed_result }}
           End host.
 
-    - name: "stat: rescue: End host"
-      meta: end_host
-
-  when: pkg_audit_enable|d(bool)
-
-# EOF
-...
+    - name: "Stat: rescue: End host"
+      ansible.builtin.meta: end_host

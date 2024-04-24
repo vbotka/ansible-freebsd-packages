@@ -1,6 +1,5 @@
 ---
-
-- name: "conf: Debug"
+- name: "Conf: Debug"
   vars:
     msg: |-
       pkg_owner: {{ pkg_owner }}
@@ -8,48 +7,47 @@
       pkg_backup_conf: {{ pkg_backup_conf }}
       pkg_default_repo_template: {{ pkg_default_repo_template }}
       pkg_default_repo_conf:
-        {{ pkg_default_repo_conf|to_nice_yaml(indent=2)|indent(2) }}
+        {{ pkg_default_repo_conf | to_nice_yaml(indent=2) | indent(2) }}
       pkg_repos_template: {{ pkg_repos_template }}
       pkg_repos_conf:
-        {{ pkg_repos_conf|to_nice_yaml(indent=2)|indent(2) }}
+        {{ pkg_repos_conf | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
   when: pkg_debug|bool
 
-- name: "conf: Configure /etc/pkg/FreeBSD.conf"
+- name: "Conf: Configure /etc/pkg/FreeBSD.conf"
   ansible.builtin.template:
     src: "{{ pkg_default_repo_template }}"
     dest: /etc/pkg/FreeBSD.conf
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
-    mode: '0644'
+    mode: "0644"
     backup: "{{ pkg_backup_conf }}"
   loop: "{{ pkg_default_repo_conf }}"
   loop_control:
     label: "{{ item.name }}"
 
-- name: "conf: Create directories"
+- name: "Conf: Create directories"
   ansible.builtin.file:
     state: directory
     path: "{{ item }}"
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
-    mode: '0755'
+    mode: "0755"
   loop:
     - /usr/local/etc/pkg
     - /usr/local/etc/pkg/repos
 
-- name: "conf: Configure /usr/local/etc/pkg/repos"
+- name: "Conf: Configure /usr/local/etc/pkg/repos"
   ansible.builtin.template:
     src: "{{ pkg_repos_template }}"
-    dest: "/usr/local/etc/pkg/repos/{{ item.name }}.conf"
+    dest: /usr/local/etc/pkg/repos/{{ item.name }}.conf
     owner: "{{ pkg_owner }}"
     group: "{{ pkg_group }}"
-    mode: '0644'
+    mode: "0644"
     backup: "{{ pkg_backup_conf }}"
   loop: "{{ pkg_repos_conf }}"
   loop_control:
     label: "{{ item.name }}"
 
 # EOF
-...
