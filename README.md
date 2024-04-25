@@ -47,11 +47,21 @@ shell> ansible-galaxy collection install community.general
 shell> edit vbotka.freebsd_packages/vars/main.yml
 ```
 
-See:
+Optionally, get the dictionaries of packages' lists. See:
 
-* vars/main.yml.sample
 * contrib/vars
 * [vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml](https://github.com/vbotka/ansible-freebsd-postinstall/tree/master/defaults/main)
+
+Put them, for example, into the *group_vars/all*
+
+```bash
+shell> ls -1 group_vars/all/
+pkgdict_amd64.yml
+pkgdict_arm64.yml
+pkgdict_arm.yml
+pkgdict_i386.yml
+pkgdict_versions.yml
+```
 
 4) Create playbook
 
