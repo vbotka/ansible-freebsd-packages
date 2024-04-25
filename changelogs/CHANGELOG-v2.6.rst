@@ -17,6 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
+* Add pkg_backup_conf to debug output.
 
 
 2.6.0

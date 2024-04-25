@@ -14,6 +14,7 @@
       freebsd_install_retries: {{ freebsd_install_retries }}
       freebsd_install_delay: {{ freebsd_install_delay }}
 
+      pkg_backup_conf: {{ pkg_backup_conf }}
       pkg_dryrun: {{ pkg_dryrun }}
       pkg_install_individually: {{ pkg_install_individually }}
 
