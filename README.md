@@ -47,7 +47,11 @@ shell> ansible-galaxy collection install community.general
 shell> edit vbotka.freebsd_packages/vars/main.yml
 ```
 
-See vars/main.yml.sample. See vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
+See:
+
+* vars/main.yml.sample
+* contrib/vars
+* [vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml](https://github.com/vbotka/ansible-freebsd-postinstall/tree/master/defaults/main)
 
 4) Create playbook
 
@@ -400,6 +404,23 @@ ok: [srv.example.org] =>
         [4/4] Extracting portmaster-3.27: ........ done
   ...
 ```
+
+* Install the *minimal* list of packages at the hosts in the group *test*
+
+```yaml
+- hosts: test
+  gather_facts: true
+  become: true
+
+  vars:
+
+    pkg_dict_select:
+      - minimal
+
+  roles:
+    - vbotka.freebsd_packages
+```
+
 
 ## Ansible lint
 

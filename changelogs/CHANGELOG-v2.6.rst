@@ -21,6 +21,7 @@ Minor Changes
 * Update ansible lint config.
 * Update README.
 * Fix Ansible lint.
+* Add contrib/vars/pkgdict_*.yml
 
 Bugfixes
 --------
