@@ -10,7 +10,7 @@ freebsd_install_delay: 5
 # pkg_backup_conf: true
 pkg_backup_conf: false
 
-# Print resutls and lists of variables.
+# Print results and lists of variables.
 # pkg_debug: true
 pkg_debug: false
 
@@ -22,14 +22,12 @@ pkg_dryrun: false
 # pkg_dict: []
 # pkg_list: []
 pkg_list_deinstall: []
-
 # Sellect all lists from pkg_dict
 # pkg_dict_all: true
 pkg_dict_all: false
 
 # Sellect lists from pkg_dict
 pkg_dict_select: []
-
 # Indivindually install packages from a list (not recommended).
 # Quoting from community.general.pkgng: "When used with
 # a loop: each package will be processed individually, it is much more
@@ -42,24 +40,24 @@ pkg_owner: root
 pkg_group: wheel
 
 # /etc/pkg/FreeBSD.conf
-pkg_default_repo_enabled: 'yes'
+pkg_default_repo_conf: []
+# - "{{ pkg_default_repo }}"
+pkg_default_repo_enabled: "yes"
 pkg_default_repo_url: pkg+http://pkg.FreeBSD.org/${ABI}/quarterly
 pkg_default_repo:
   name: FreeBSD
   conf:
-    - {key: url, value: '"{{ pkg_default_repo_url }}"'}
-    - {key: mirror_type, value: '"srv"'}
-    - {key: signature_type, value: '"fingerprints"'}
-    - {key: fingerprints, value: '"/usr/share/keys/pkg"'}
-    - {key: enabled, value: "{{ pkg_default_repo_enabled }}"}
+    - { key: url, value: '"{{ pkg_default_repo_url }}"' }
+    - { key: mirror_type, value: '"srv"' }
+    - { key: signature_type, value: '"fingerprints"' }
+    - { key: fingerprints, value: '"/usr/share/keys/pkg"' }
+    - { key: enabled, value: "{{ pkg_default_repo_enabled }}" }
 pkg_default_repo_template: repo.j2
-pkg_default_repo_conf: []
-# - "{{ pkg_default_repo }}"
 
 # /usr/local/etc/pkg/repos
-pkg_repos_template: repo.j2
 pkg_repos_conf: []
 # - "{{ pkg_default_repo }}"
+pkg_repos_template: repo.j2
 
 # Optional parameters of the module community.general.pkgng
 # pkg_annotation: <list of strings>
@@ -76,10 +74,9 @@ pkg_repos_conf: []
 # Status
 pkg_stat: false
 pkg_audit_enable: false
-pkg_audit: "{{ dict(ansible_play_hosts|
-                    zip(ansible_play_hosts|
-                        map('extract', hostvars, ['pkg_audit_out', 'stdout'])|
+pkg_audit: "{{ dict(ansible_play_hosts |
+                    zip(ansible_play_hosts |
+                        map('extract', hostvars, ['pkg_audit_out', 'stdout']) |
                         map('from_yaml'))) }}"
 
 # EOF
-...

@@ -7,14 +7,27 @@
 
 - name: Import debug.yml
   ansible.builtin.import_tasks: debug.yml
-  when: pkg_debug|bool
+  when: pkg_debug | bool
   tags: pkg_debug
 
-- name: Import conf.yml
-  ansible.builtin.import_tasks: conf.yml
-  tags: pkg_conf
+- name: Import config.yml
+  ansible.builtin.import_tasks: config.yml
+  tags: pkg_config
 
-- block:
+- name: Install and delete packages
+  module_defaults:
+    community.general.pkgng:
+      annotation: "{{ pkg_annotation | d(omit) }}"
+      autoremove: "{{ pkg_autoremove | d(omit) }}"
+      cached: "{{ pkg_cached | d(omit) }}"
+      chroot: "{{ pkg_chroot | d(omit) }}"
+      ignore_osver: "{{ pkg_ignore_osver | d(omit) }}"
+      jail: "{{ pkg_jail | d(omit) }}"
+      pkgsite: "{{ pkg_pkgsite | d(omit) }}"
+      rootdir: "{{ pkg_rootdir | d(omit) }}"
+      state: "{{ pkg_state | d(omit) }}"
+  when: freebsd_install_method | lower == 'packages'
+  block:
 
     - name: Import packages_delete.yml
       ansible.builtin.import_tasks: packages_delete.yml
@@ -26,23 +39,9 @@
       ansible.builtin.import_tasks: packages_install.yml
       tags: pkg_packages_install
 
-  module_defaults:
-    community.general.pkgng:
-      annotation: "{{ pkg_annotation|default(omit) }}"
-      autoremove: "{{ pkg_autoremove|default(omit) }}"
-      cached: "{{ pkg_cached|default(omit) }}"
-      chroot: "{{ pkg_chroot|default(omit) }}"
-      ignore_osver: "{{ pkg_ignore_osver|default(omit) }}"
-      jail: "{{ pkg_jail|default(omit) }}"
-      pkgsite: "{{ pkg_pkgsite|default(omit) }}"
-      rootdir: "{{ pkg_rootdir|default(omit) }}"
-      state:  "{{ pkg_state|default(omit) }}"
-  when: freebsd_install_method|lower == 'packages'
-
 - name: Import stat.yml
   ansible.builtin.import_tasks: stat.yml
-  when: pkg_stat|bool
+  when: pkg_stat | bool
   tags: pkg_stat
 
 # EOF
-...
