@@ -1,5 +1,5 @@
 ---
-- name: Debug
+- name: "Debug pkg_debug={{ pkg_debug }}"
   vars:
     msg: |-
       ansible_architecture: {{ ansible_architecture }}
@@ -15,30 +15,30 @@
       freebsd_install_delay: {{ freebsd_install_delay }}
 
       pkg_dryrun: {{ pkg_dryrun }}
+      pkg_install_individually: {{ pkg_install_individually }}
 
       pkg_owner: {{ pkg_owner }}
       pkg_group: {{ pkg_group }}
-      pkg_annotation: {{ pkg_annotation | default('UNDEFINED') }}
-      pkg_autoremove: {{ pkg_autoremove | default('UNDEFINED') }}
-      pkg_cached: {{ pkg_cached | default('UNDEFINED') }}
-      pkg_chroot: {{ pkg_chroot | default('UNDEFINED') }}
-      pkg_ignore_osver: {{ pkg_ignore_osver | default('UNDEFINED') }}
-      pkg_jail: {{ pkg_jail | default('UNDEFINED') }}
-      pkg_pkgsite: {{ pkg_pkgsite | default('UNDEFINED') }}
-      pkg_rootdir: {{ pkg_rootdir | default('UNDEFINED') }}
-      pkg_state: {{ pkg_state | default('UNDEFINED') }}
+      pkg_annotation: {{ pkg_annotation | d('UNDEFINED') }}
+      pkg_autoremove: {{ pkg_autoremove | d('UNDEFINED') }}
+      pkg_cached: {{ pkg_cached | d('UNDEFINED') }}
+      pkg_chroot: {{ pkg_chroot | d('UNDEFINED') }}
+      pkg_ignore_osver: {{ pkg_ignore_osver | d('UNDEFINED') }}
+      pkg_jail: {{ pkg_jail | d('UNDEFINED') }}
+      pkg_pkgsite: {{ pkg_pkgsite | d('UNDEFINED') }}
+      pkg_rootdir: {{ pkg_rootdir | d('UNDEFINED') }}
+      pkg_state: {{ pkg_state | d('UNDEFINED') }}
 
+      pkg_default_repo_conf:
+        {{ pkg_default_repo_conf | to_yaml(indent=2) | indent(2) }}
+      pkg_default_repo_template: {{ pkg_default_repo_template }}
       pkg_default_repo_enabled: {{ pkg_default_repo_enabled }}
       pkg_default_repo_url: {{ pkg_default_repo_url }}
       pkg_default_repo:
         {{ pkg_default_repo | to_yaml(indent=2) | indent(2) }}
-      pkg_default_repo_template: {{ pkg_default_repo_template }}
-      pkg_default_repo_conf:
-        {{ pkg_default_repo_conf | to_yaml(indent=2) | indent(2) }}
       pkg_repos_template: {{ pkg_repos_template }}
       pkg_repos_conf:
         {{ pkg_repos_conf | to_yaml(indent=2) | indent(2) }}
-      pkg_install_individually: {{ pkg_install_individually }}
       pkg_dict:
         {{ pkg_dict | to_nice_yaml(indent=2) | indent(2) }}
       pkg_list:
