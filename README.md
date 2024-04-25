@@ -1,6 +1,6 @@
 # freebsd_packages
 
-[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/freebsd_packages)[![Build Status](https://travis-ci.org/vbotka/ansible-freebsd-packages.svg?branch=master)](https://travis-ci.org/vbotka/ansible-freebsd-packages)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/freebsd_packages)[![Build Status](https://app.travis-ci.com/vbotka/ansible-freebsd-packages.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-freebsd-packages)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-freebsd-packages)](https://github.com/vbotka/ansible-freebsd-packages/tags)
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) FreeBSD. Configure repositories. Install and update packages.
 
@@ -23,22 +23,27 @@ See the defaults and examples in vars.
 
 ## Workflow
 
-1) Change shell to /bin/sh
+1) Change shell on the remote host to /bin/sh if necessary
 
-```
+```bash
 shell> ansible host -e 'ansible_shell_type=csh ansible_shell_executable=/bin/csh' -a 'sudo pw usermod user -s /bin/sh'
 ```
 
-2) Install role and collections
+2) Install the role and collection
 
-```
+```bash
 shell> ansible-galaxy role install vbotka.freebsd_packages
+```
+
+Install the collection if necessary
+
+```bash
 shell> ansible-galaxy collection install community.general
 ```
 
-3) Change variables, for example in vars/main.yml
+3) Change variables, for example, in vars/main.yml
 
-```
+```bash
 shell> edit vbotka.freebsd_packages/vars/main.yml
 ```
 
@@ -46,7 +51,7 @@ See vars/main.yml.sample. See vbotka.freebsd_postinstall/defaults/main/pkgdict_*
 
 4) Create playbook
 
-```
+```bash
 shell> cat freebsd-packages.yml
 
 - hosts: srv.example.com
@@ -58,38 +63,38 @@ shell> cat freebsd-packages.yml
 
 Check syntax
 
-```
+```bash
 shell> ansible-playbook freebsd-packages.yml --syntax-check
 ```
 
 Display variables
 
-```
+```bash
 shell> ansible-playbook freebsd-packages.yml -e pkg_debug=true -t pkg_debug
 ```
 
 Dry-run the playbook and display changes
 
-```
+```bash
 shell> ansible-playbook freebsd-packages.yml --check --diff
 ```
 
 Optionally, configure repositories in a separate step. This will enable to display actual dry-run of
-the installation.
+the installation
 
-```
+```bash
 shell> ansible-playbook freebsd-packages.yml -t pkg_conf
 ```
 
 Dry-run the installation of the packages
 
-```
+```bash
 shell> ansible-playbook freebsd-packages.yml -e pkg_dryrun=true
 ```
 
-Manage the packages if all seems to be right
+If all seems to be right manage the packages
 
-```
+```bash
 shell> ansible-playbook freebsd-packages.yml
 ```
 
@@ -167,7 +172,7 @@ pkg_repos_conf:
       - {key: enabled, value: 'yes'}
 ```
 
-and create the configuarion files
+and create the configuration files
 
 ```bash
 shell> ansible-playbook -t pkg_conf freebsd-packages.yml
@@ -396,11 +401,19 @@ ok: [srv.example.org] =>
   ...
 ```
 
+## Ansible lint
+
+Use the configuration file *.ansible-lint.local* when running *ansible-lint*. Some rules might be disabled and some warnings might be ignored. See the notes in the configuration file.
+
+```bash
+shell> ansible-lint -c .ansible-lint.local
+```
+
 
 ## References
 
-- [FreeBSD handbook: 4.4. Using pkg for Binary Package Management](https://www.freebsd.org/doc/handbook/pkgng-intro.html)
-- [FreeBSD handbook: 4.6.2. Configuring pkg Clients to Use a Poudriere Repository](https://www.freebsd.org/doc/handbook/ports-poudriere.html)
+- [FreeBSD handbook: Using pkg for Binary Package Management](https://www.freebsd.org/doc/handbook/pkgng-intro.html)
+- [FreeBSD handbook: Building Packages with poudriere](https://www.freebsd.org/doc/handbook/ports-poudriere.html)
 - [man pkg.conf](https://www.freebsd.org/cgi/man.cgi?query=pkg.conf&sektion=5)
 - [pkg - a binary package manager for FreeBSD](https://github.com/freebsd/pkg#working-with-multiple-repositories)
 
