@@ -1,8 +1,10 @@
 # freebsd_packages
 
-[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/freebsd_packages)[![Build Status](https://app.travis-ci.com/vbotka/ansible-freebsd-packages.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-freebsd-packages)[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-freebsd-packages)](https://github.com/vbotka/ansible-freebsd-packages/tags)
+[![quality](https://img.shields.io/ansible/quality/27910)](https://galaxy.ansible.com/vbotka/freebsd_packages)
+[![Build Status](https://app.travis-ci.com/vbotka/ansible-freebsd-packages.svg?branch=master)](https://app.travis-ci.com/vbotka/ansible-freebsd-packages)
+[![GitHub tag](https://img.shields.io/github/v/tag/vbotka/ansible-freebsd-packages)](https://github.com/vbotka/ansible-freebsd-packages/tags)
 
-[Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) FreeBSD. Configure repositories. Install and update packages.
+[Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) FreeBSD. Configure repositories. Install, update, and upgrade packages.
 
 Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-freebsd-packages/issues).
 
@@ -41,11 +43,7 @@ Install the collection if necessary
 shell> ansible-galaxy collection install community.general
 ```
 
-3) Change variables, for example, in vars/main.yml
-
-```bash
-shell> edit vbotka.freebsd_packages/vars/main.yml
-```
+3) Change variables to your needs.
 
 Optionally, get the dictionaries of packages' lists. See:
 
@@ -67,7 +65,6 @@ pkgdict_versions.yml
 
 ```bash
 shell> cat freebsd-packages.yml
-
 - hosts: srv.example.com
   roles:
     - vbotka.freebsd_packages
@@ -93,14 +90,13 @@ Dry-run the playbook and display changes
 shell> ansible-playbook freebsd-packages.yml --check --diff
 ```
 
-Optionally, configure repositories in a separate step. This will enable to display actual dry-run of
-the installation
+Optionally, configure repositories in a separate step. This will enable to display the actual installation dry-run
 
 ```bash
 shell> ansible-playbook freebsd-packages.yml -t pkg_conf
 ```
 
-Dry-run the installation of the packages
+Dry-run the packages installation
 
 ```bash
 shell> ansible-playbook freebsd-packages.yml -e pkg_dryrun=true
@@ -110,6 +106,17 @@ If all seems to be right manage the packages
 
 ```bash
 shell> ansible-playbook freebsd-packages.yml
+```
+
+Hint. There are lot of skipped tasks. To make the output of the playbook easier to read:
+
+* Use callback plugin community.general.yaml
+
+* Disable skipped hosts and display debug
+
+
+```bash
+shell> ANSIBLE_DISPLAY_SKIPPED_HOSTS=false ansible-playbook freebsd-packages.yml -e pkg_debug=true
 ```
 
 

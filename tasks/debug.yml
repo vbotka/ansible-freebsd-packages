@@ -2,6 +2,7 @@
 - name: "Debug pkg_debug={{ pkg_debug }}"
   vars:
     msg: |-
+      pkg_role_version: {{ pkg_role_version }}
       ansible_architecture: {{ ansible_architecture }}
       ansible_os_family: {{ ansible_os_family }}
       ansible_distribution: {{ ansible_distribution }}

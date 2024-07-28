@@ -1,5 +1,6 @@
 ---
 # defaults for freebsd_packages
+pkg_role_version: 2.6.1
 
 # Install params
 freebsd_install_method: packages
