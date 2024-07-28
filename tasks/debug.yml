@@ -2,6 +2,7 @@
 - name: "Debug pkg_debug={{ pkg_debug }}"
   vars:
     msg: |-
+      pkg_role_version: {{ pkg_role_version }}
       ansible_architecture: {{ ansible_architecture }}
       ansible_os_family: {{ ansible_os_family }}
       ansible_distribution: {{ ansible_distribution }}
@@ -14,6 +15,7 @@
       freebsd_install_retries: {{ freebsd_install_retries }}
       freebsd_install_delay: {{ freebsd_install_delay }}
 
+      pkg_backup_conf: {{ pkg_backup_conf }}
       pkg_dryrun: {{ pkg_dryrun }}
       pkg_install_individually: {{ pkg_install_individually }}
 

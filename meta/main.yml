@@ -3,16 +3,17 @@ galaxy_info:
   namespace: vbotka
   role_name: freebsd_packages
   author: Vladimir Botka
-  description: FreeBSD. Configure repositories. Install and update packages.
+  description: FreeBSD. Configure repositories. Install, update, and upgrade packages.
   company: https://botka.info
   github_branch: master
   license: BSD
-  min_ansible_version: "2.16"
+  min_ansible_version: "2.17"
   platforms:
     - name: FreeBSD
       versions:
         - 13.3
         - 14.0
+        - 14.1
   galaxy_tags:
     - freebsd
     - packages
@@ -20,4 +21,3 @@ galaxy_info:
 dependencies: []
 collections:
   - community.general
-...
