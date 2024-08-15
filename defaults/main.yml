@@ -1,6 +1,9 @@
 ---
 # defaults for freebsd_packages
-pkg_role_version: 2.6.1
+pkg_role_version: 2.6.2
+
+# requirements >=
+pkg_version_community_general: 9.3.0
 
 # Install params
 freebsd_install_method: packages
@@ -14,6 +17,10 @@ pkg_backup_conf: false
 # Print results and lists of variables.
 # pkg_debug: true
 pkg_debug: false
+
+# Sanity various checks.
+pkg_sanity: true
+pkg_sanity_version_community_general: true
 
 # Do not install/deinstall packages
 # pkg_dryrun: true
@@ -61,7 +68,7 @@ pkg_repos_conf: []
 pkg_repos_template: repo.j2
 
 # Optional parameters of the module community.general.pkgng
-# pkg_annotation: <list of strings>
+# pkg_annotation: [str]
 # pkg_autoremove: false
 # pkg_cached: false
 # pkg_chroot: <path>
@@ -71,6 +78,7 @@ pkg_repos_template: repo.j2
 # pkg_pkgsite: FreeBSD
 # pkg_rootdir: <path>
 # pkg_state: present
+# pkg_use_globs: true
 
 # Status
 pkg_stat: false
