@@ -120,6 +120,17 @@ shell> ANSIBLE_DISPLAY_SKIPPED_HOSTS=false ansible-playbook freebsd-packages.yml
 ```
 
 
+## Upgrade packages
+
+Since community.general 9.3.0 it is possible to upgrate
+*(state=latest)* packages in the form “category/port” aka
+“pkg-origin”. You haved to disable globs *(use_globs=false)*. See the parameter [use_globs](https://docs.ansible.com/ansible/latest/collections/community/general/pkgng_module.html#parameter-use_globs)
+
+```bash
+shell> ansible-playbook freebsd-packages.yml -e pkg_state=latest -e pkg_use_globs=false
+```
+
+
 ## Repositories
 
 The parameter [pkgsite](https://docs.ansible.com/ansible/latest/collections/community/general/pkgng_module.html#parameter-pkgsite) of the module *community.general.pkgng* says:

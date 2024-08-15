@@ -5,6 +5,24 @@ vbotka.freebsd_packages 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.3
+=====
+
+Release Summary
+---------------
+Feature update.
+
+Major Changes
+-------------
+* Enable upgrade (state=latest) in the form “category/port”, or
+  “pkg-origin
+* Update tasks/main.yml, pkg_delete.yml,  and pkg_install.yml
+
+Minor Changes
+-------------
+* Update README
+
+
 2.6.2
 =====
 

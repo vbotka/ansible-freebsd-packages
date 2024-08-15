@@ -23,26 +23,26 @@
   module_defaults:
     community.general.pkgng:
       annotation: "{{ pkg_annotation | d(omit) }}"
-      autoremove: "{{ pkg_autoremove | d(omit) }}"
-      cached: "{{ pkg_cached | d(omit) }}"
+      autoremove: "{{ pkg_autoremove | d(omit) | bool }}"
+      cached: "{{ pkg_cached | d(omit) | bool }}"
       chroot: "{{ pkg_chroot | d(omit) }}"
-      ignore_osver: "{{ pkg_ignore_osver | d(omit) }}"
+      ignore_osver: "{{ pkg_ignore_osver | d(omit) | bool }}"
       jail: "{{ pkg_jail | d(omit) }}"
       pkgsite: "{{ pkg_pkgsite | d(omit) }}"
       rootdir: "{{ pkg_rootdir | d(omit) }}"
       state: "{{ pkg_state | d(omit) }}"
-      use_globs: "{{ pkg_use_globs | d(omit) }}"
+      use_globs: "{{ pkg_use_globs | d(omit) | bool }}"
   when: freebsd_install_method | lower == 'packages'
   block:
 
     - name: Import pkg_delete.yml
       ansible.builtin.import_tasks: pkg_delete.yml
-      vars:
-        pkg_state: absent
+      when: pkg_list_deinstall | length > 0
       tags: pkg_delete
 
     - name: Import pkg_install.yml
       ansible.builtin.import_tasks: pkg_install.yml
+      when: (pkg_dict_all | bool) or (pkg_dict_select | length > 0) or (pkg_list | length > 0)
       tags: pkg_install
 
 - name: Import stat.yml
