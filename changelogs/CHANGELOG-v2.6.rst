@@ -5,6 +5,28 @@ vbotka.freebsd_packages 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.2
+=====
+
+Release Summary
+---------------
+Feature update.
+
+Major Changes
+-------------
+* Add sanity.yml various checks.
+* Add var pkg_sanity default=true.
+* Add var pkg_sanity_version_community_general default=true.
+* Add var pkg_version_community_general requirement minimal 9.3.0
+* Update debug.yml
+* Rename packages_*.yml to pkg_*.yml
+* Rename tags: pkg_delete, pkg_install
+
+Minor Changes
+-------------
+* Update README
+
+
 2.6.1
 =====
 

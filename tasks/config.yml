@@ -27,27 +27,31 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: "Config: Create directories"
-  ansible.builtin.file:
-    state: directory
-    path: "{{ item }}"
-    owner: "{{ pkg_owner }}"
-    group: "{{ pkg_group }}"
-    mode: "0755"
-  loop:
-    - /usr/local/etc/pkg
-    - /usr/local/etc/pkg/repos
+- name: Create /usr/local/etc/pkg/repos/*
+  when: pkg_repos_conf | length > 0
+  block:
 
-- name: "Config: Configure /usr/local/etc/pkg/repos"
-  ansible.builtin.template:
-    src: "{{ pkg_repos_template }}"
-    dest: /usr/local/etc/pkg/repos/{{ item.name }}.conf
-    owner: "{{ pkg_owner }}"
-    group: "{{ pkg_group }}"
-    mode: "0644"
-    backup: "{{ pkg_backup_conf }}"
-  loop: "{{ pkg_repos_conf }}"
-  loop_control:
-    label: "{{ item.name }}"
+    - name: "Config: Create directories"
+      ansible.builtin.file:
+        state: directory
+        path: "{{ item }}"
+        owner: "{{ pkg_owner }}"
+        group: "{{ pkg_group }}"
+        mode: "0755"
+      loop:
+        - /usr/local/etc/pkg
+        - /usr/local/etc/pkg/repos
+
+    - name: "Config: Configure /usr/local/etc/pkg/repos"
+      ansible.builtin.template:
+        src: "{{ pkg_repos_template }}"
+        dest: /usr/local/etc/pkg/repos/{{ item.name }}.conf
+        owner: "{{ pkg_owner }}"
+        group: "{{ pkg_group }}"
+        mode: "0644"
+        backup: "{{ pkg_backup_conf }}"
+      loop: "{{ pkg_repos_conf }}"
+      loop_control:
+        label: "{{ item.name }}"
 
 # EOF

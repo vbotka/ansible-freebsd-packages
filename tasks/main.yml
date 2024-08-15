@@ -5,6 +5,11 @@
   ansible.builtin.import_tasks: vars.yml
   tags: [pkg_vars, always]
 
+- name: Import sanity.yml
+  ansible.builtin.import_tasks: sanity.yml
+  when: pkg_sanity | bool
+  tags: pkg_sanity
+
 - name: Import debug.yml
   ansible.builtin.import_tasks: debug.yml
   when: pkg_debug | bool
@@ -26,18 +31,19 @@
       pkgsite: "{{ pkg_pkgsite | d(omit) }}"
       rootdir: "{{ pkg_rootdir | d(omit) }}"
       state: "{{ pkg_state | d(omit) }}"
+      use_globs: "{{ pkg_use_globs | d(omit) }}"
   when: freebsd_install_method | lower == 'packages'
   block:
 
-    - name: Import packages_delete.yml
-      ansible.builtin.import_tasks: packages_delete.yml
+    - name: Import pkg_delete.yml
+      ansible.builtin.import_tasks: pkg_delete.yml
       vars:
         pkg_state: absent
-      tags: pkg_packages_delete
+      tags: pkg_delete
 
-    - name: Import packages_install.yml
-      ansible.builtin.import_tasks: packages_install.yml
-      tags: pkg_packages_install
+    - name: Import pkg_install.yml
+      ansible.builtin.import_tasks: pkg_install.yml
+      tags: pkg_install
 
 - name: Import stat.yml
   ansible.builtin.import_tasks: stat.yml

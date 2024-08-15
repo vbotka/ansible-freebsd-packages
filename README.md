@@ -15,7 +15,7 @@ Feel free to [share your feedback and report issues](https://github.com/vbotka/a
 
 ### Collections
 
-- community.general
+- community.general >= 9.3.0
 
 
 ## Variables
@@ -63,7 +63,7 @@ pkgdict_versions.yml
 
 4) Create playbook
 
-```bash
+```yaml
 shell> cat freebsd-packages.yml
 - hosts: srv.example.com
   roles:
@@ -456,11 +456,11 @@ shell> ansible-lint -c .ansible-lint.local
 - [pkg - a binary package manager for FreeBSD](https://github.com/freebsd/pkg#working-with-multiple-repositories)
 
 
-## Author Information
-
-[Vladimir Botka](https://botka.info)
-
-
 ## License
 
 [![license](https://img.shields.io/badge/license-BSD-red.svg)](https://www.freebsd.org/doc/en/articles/bsdl-gpl/article.html)
+
+
+## Author Information
+
+[Vladimir Botka](https://botka.info)
