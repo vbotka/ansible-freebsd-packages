@@ -27,7 +27,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: Create /usr/local/etc/pkg/repos/*
+- name: "Create /usr/local/etc/pkg/repos/*"
   when: pkg_repos_conf | length > 0
   block:
 

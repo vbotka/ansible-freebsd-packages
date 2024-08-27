@@ -1,5 +1,5 @@
 ---
-- name: Get pkg audit
+- name: "Get pkg audit"
   when: pkg_audit_enable | bool
   block:
 

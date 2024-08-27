@@ -5,6 +5,21 @@ vbotka.freebsd_packages 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.4
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Labels formatting.
+
+
 2.6.3
 =====
 

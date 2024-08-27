@@ -31,7 +31,7 @@
         var: result
       when: pkg_debug | bool
 
-- name: Install individually from all lists in pkg_dict
+- name: "Install individually from all lists in pkg_dict"
   when:
     - pkg_dict_all | bool
     - pkg_install_individually | bool
@@ -63,7 +63,7 @@
         var: result
       when: pkg_debug | bool
 
-- name: Install selected lists from pkg_dict
+- name: "Install selected lists from pkg_dict"
   when:
     - pkg_dict_select | length > 0
     - not pkg_install_individually | bool
@@ -95,7 +95,7 @@
         var: result
       when: pkg_debug | bool
 
-- name: Install individually from selected lists in pkg_dict
+- name: "Install individually from selected lists in pkg_dict"
   when:
     - pkg_dict_select | length > 0
     - pkg_install_individually | bool
@@ -127,7 +127,7 @@
         var: result
       when: pkg_debug | bool
 
-- name: Install list pkg_list
+- name: "Install list pkg_list"
   when:
     - pkg_list | length > 0
     - not pkg_install_individually | bool
@@ -153,7 +153,7 @@
         var: result
       when: pkg_debug | bool
 
-- name: Install individually from list pkg_list
+- name: "Install individually from list pkg_list"
   when:
     - pkg_list | length > 0
     - pkg_install_individually | bool
