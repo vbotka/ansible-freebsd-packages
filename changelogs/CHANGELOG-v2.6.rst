@@ -18,6 +18,7 @@ Major Changes
 Minor Changes
 -------------
 * Labels formatting.
+* Update debug.
 
 
 2.6.3
