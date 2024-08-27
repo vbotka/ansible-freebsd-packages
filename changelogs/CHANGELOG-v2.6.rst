@@ -18,8 +18,8 @@ Major Changes
 Minor Changes
 -------------
 * Labels formatting.
-* Update debug.
-
+* Update debug. Redundant vars removed.
+* Update pkg_repos_conf examples in defaults/main.yml
 
 2.6.3
 =====
