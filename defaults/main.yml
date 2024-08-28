@@ -14,17 +14,24 @@ freebsd_install_delay: 5
 # pkg_backup_conf: true
 pkg_backup_conf: false
 
-# Print results and lists of variables.
+# Print facts and lists of variables.
 # pkg_debug: true
 pkg_debug: false
 
-# Sanity various checks.
+# Sanity. Various tests.
 pkg_sanity: true
 pkg_sanity_version_community_general: true
 
-# Do not install/deinstall packages
+# Do not install/deinstall packages.
 # pkg_dryrun: true
 pkg_dryrun: false
+
+# Indivindually install packages from a list (not recommended).
+# Quoting from community.general.pkgng: "When used with
+# a loop: each package will be processed individually, it is much more
+# efficient to pass the list directly to the name option."
+# pkg_install_individually: true
+pkg_install_individually: false
 
 # See vars/main.yml.sample and tasks/vars.yml
 # pkg_dict: []
@@ -36,12 +43,6 @@ pkg_dict_all: false
 
 # Sellect lists from pkg_dict
 pkg_dict_select: []
-# Indivindually install packages from a list (not recommended).
-# Quoting from community.general.pkgng: "When used with
-# a loop: each package will be processed individually, it is much more
-# efficient to pass the list directly to the name option."
-# pkg_install_individually: true
-pkg_install_individually: false
 
 # Owner and group of the configuration files.
 pkg_owner: root
