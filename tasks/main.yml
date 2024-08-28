@@ -15,9 +15,9 @@
   when: pkg_debug | bool
   tags: pkg_debug
 
-- name: Import config.yml
-  ansible.builtin.import_tasks: config.yml
-  tags: pkg_config
+- name: Import conf.yml
+  ansible.builtin.import_tasks: conf.yml
+  tags: pkg_conf
 
 - name: Install and delete packages
   module_defaults:
