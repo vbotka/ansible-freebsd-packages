@@ -18,7 +18,7 @@
 #   - name: build
 #     conf:
 #       - {key: 'url', value: '"http://build.example.com/packages/141Ramd64-default-devel"'}
-#       - {key: 'mirror_type', value: '"http"'}
+#       - {key: 'mirror_type', value: '"nomirror"'}
 #       - {key: 'enabled', value: 'yes'}
 #       - {key: 'signature_type', value: '"pubkey"'}
 #       - {key: 'pubkey', value: '"/usr/local/etc/ssl/crt/build.example.com-sk.crt"'}
@@ -29,7 +29,7 @@
 #  - name: build
 #    conf:
 #      - {key: 'url', value: '"file:///usr/local/poudriere/data/packages/141Ramd64-default-devel/"'}
-#      - {key: 'mirror_type', value: '"srv"'}
+#      - {key: 'mirror_type', value: '"nomirror"'}
 #      - {key: 'enabled', value: 'yes'}
 #      - {key: 'signature_type', value: '"pubkey"'}
 #      - {key: 'pubkey', value: '"/usr/local/etc/ssl/crt/build.example.com-sk.crt"'}
