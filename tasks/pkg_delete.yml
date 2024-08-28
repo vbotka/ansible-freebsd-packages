@@ -24,7 +24,7 @@
         var: result
       when: pkg_debug | bool
 
-- name: Deinstall individually list pkg_list_deinstall
+- name: "Deinstall individually list pkg_list_deinstall"
   when: pkg_install_individually | bool
   tags: pkg_packages_delete_list_indivindually
   block:

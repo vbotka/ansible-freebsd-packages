@@ -5,6 +5,26 @@ vbotka.freebsd_packages 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.4
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Update README.
+* Update tasks names formatting.
+* Update debug. Redundant vars removed.
+* Update pkg_repos_conf examples in defaults/main.yml
+* Update samples vars/main.yml.sample
+* Rename tasks/config.yml to tasks/conf.yml
+
+
 2.6.3
 =====
 

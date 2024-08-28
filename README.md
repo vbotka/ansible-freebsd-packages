@@ -61,6 +61,23 @@ pkgdict_i386.yml
 pkgdict_versions.yml
 ```
 
+See *tasks/vars.yml*. The fact *ansible_architecture* is used to
+automatically select the correct list of dictionaries *pkgdict_*
+
+See *tasks/pkg_install* and *tasks/delete* how the variables are used.
+
+There are three options how to declare which packages to install:
+
+* Install all lists from *pkg_dict*. Set *pkg_dict_all: true*
+
+* Select lists from *pkg_dict*. For example, *pkg_dict_select: [minimal, postinstall]*
+
+* Declare the list of packages. For example, *pkg_list: [bash, git, gtar, pkg, rsync, wget]
+
+To deinstall declare the list of packages. For example, *pkg_list_deinstall: [gtk3, libxkbcommon, wayland]*
+
+See examples *vars/main.yml.sample*
+
 4) Create playbook
 
 ```yaml
@@ -68,6 +85,12 @@ shell> cat freebsd-packages.yml
 - hosts: srv.example.com
   roles:
     - vbotka.freebsd_packages
+```
+
+Display the lists of packages to install/deinstall
+
+```bash
+shell> ansible-playbook freebsd-packages.yml -e pkg_debug=true -t pkg_vars
 ```
 
 5) Manage the packages
@@ -122,9 +145,11 @@ shell> ANSIBLE_DISPLAY_SKIPPED_HOSTS=false ansible-playbook freebsd-packages.yml
 
 ## Upgrade packages
 
-Since community.general 9.3.0 it is possible to upgrate
+Since community.general 9.3.0 it is possible to upgrade
 *(state=latest)* packages in the form “category/port” aka
-“pkg-origin”. You haved to disable globs *(use_globs=false)*. See the parameter [use_globs](https://docs.ansible.com/ansible/latest/collections/community/general/pkgng_module.html#parameter-use_globs)
+“pkg-origin”. You have to disable globs *(use_globs=false)* if the
+form "pkg-origin" is used. See the parameter
+[use_globs](https://docs.ansible.com/ansible/latest/collections/community/general/pkgng_module.html#parameter-use_globs)
 
 ```bash
 shell> ansible-playbook freebsd-packages.yml -e pkg_state=latest -e pkg_use_globs=false

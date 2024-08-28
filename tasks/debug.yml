@@ -19,6 +19,8 @@
 
       pkg_sanity: {{ pkg_sanity }}
       pkg_sanity_version_community_general: {{ pkg_sanity_version_community_general }}
+      pkg_stat: {{ pkg_stat }}
+      pkg_audit_enable: {{ pkg_audit_enable }}
       pkg_backup_conf: {{ pkg_backup_conf }}
       pkg_dryrun: {{ pkg_dryrun }}
       pkg_install_individually: {{ pkg_install_individually }}
@@ -36,28 +38,21 @@
       pkg_state: {{ pkg_state | d('UNDEFINED') }}
       pkg_use_globs: {{ pkg_use_globs | d('UNDEFINED') }}
 
+      pkg_default_repo_template: {{ pkg_default_repo_template }}
       pkg_default_repo_conf:
         {{ pkg_default_repo_conf | to_yaml(indent=2) | indent(2) }}
-      pkg_default_repo_template: {{ pkg_default_repo_template }}
-      pkg_default_repo_enabled: {{ pkg_default_repo_enabled }}
-      pkg_default_repo_url: {{ pkg_default_repo_url }}
-      pkg_default_repo:
-        {{ pkg_default_repo | to_yaml(indent=2) | indent(2) }}
       pkg_repos_template: {{ pkg_repos_template }}
       pkg_repos_conf:
         {{ pkg_repos_conf | to_yaml(indent=2) | indent(2) }}
+      pkg_dict_all: {{ pkg_dict_all }}
+      pkg_dict_select:
+        {{ pkg_dict_select | to_nice_yaml(indent=2) | indent(2) }}
       pkg_dict:
         {{ pkg_dict | to_nice_yaml(indent=2) | indent(2) }}
       pkg_list:
         {{ pkg_list | to_yaml(indent=2) | indent(2) }}
       pkg_list_deinstall:
         {{ pkg_list_deinstall | to_yaml(indent=2) | indent(2) }}
-      pkg_dict_all: {{ pkg_dict_all }}
-      pkg_dict_select:
-        {{ pkg_dict_select | to_nice_yaml(indent=2) | indent(2) }}
-      pkg_stat: {{ pkg_stat }}
-      pkg_audit_enable: {{ pkg_audit_enable }}
-
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 

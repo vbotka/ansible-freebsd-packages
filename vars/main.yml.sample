@@ -4,16 +4,40 @@
 # pkg_debug: true
 
 # In /usr/local/etc/pkg/repos/ declare Poudriere repo
-# pkg_pkgsite: build
+#
 # pkg_repos_conf:
 #   - name: build
 #     conf:
-#       - {key: url, value: '"pkg+http://build.example.com/packages/12i386-local-default"'}
+#       - {key: url, value: '"pkg+http://build.example.com/packages/141Ramd64-default-devel"'}
 #       - {key: mirror_type, value: '"srv"'}
 #       - {key: enabled, value: 'yes'}
 
+# In /usr/local/etc/pkg/repos/ declare Poudriere repo http/https only
+#
+# pkg_repos_conf:
+#   - name: build
+#     conf:
+#       - {key: 'url', value: '"http://build.example.com/packages/141Ramd64-default-devel"'}
+#       - {key: 'mirror_type', value: '"nomirror"'}
+#       - {key: 'enabled', value: 'yes'}
+#       - {key: 'signature_type', value: '"pubkey"'}
+#       - {key: 'pubkey', value: '"/usr/local/etc/ssl/crt/build.example.com-sk.crt"'}
+
+# In /usr/local/etc/pkg/repos/ declare Poudriere local repo
+#
+# pkg_repos_conf:
+#  - name: build
+#    conf:
+#      - {key: 'url', value: '"file:///usr/local/poudriere/data/packages/141Ramd64-default-devel/"'}
+#      - {key: 'mirror_type', value: '"nomirror"'}
+#      - {key: 'enabled', value: 'yes'}
+#      - {key: 'signature_type', value: '"pubkey"'}
+#      - {key: 'pubkey', value: '"/usr/local/etc/ssl/crt/build.example.com-sk.crt"'}
+
 # In /usr/local/etc/pkg/repos/ disable default repo FreeBSD, declared
-# in /etc/pkg/FreeBSD.conf, and declare repos FreeBSD_quarterly, FreeBSD_latest
+# in /etc/pkg/FreeBSD.conf, and declare repos FreeBSD_quarterly and
+# FreeBSD_latest
+#
 # pkg_repos_conf:
 #   - name: FreeBSD
 #     conf:
@@ -33,14 +57,15 @@
 #       - {key: fingerprints, value: '"/usr/share/keys/pkg"'}
 #       - {key: enabled, value: 'yes'}
 
-# See vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
+# See default lists of dictionaries pkgdict_*.yml in
+# vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
 #
 # bsd_linux_version: "c6"
 # pkg_dict_amd64:
 #   - pkglist: minimal
 #     packages:
 #       - shells/bash
-#       - devel/git
+#       - devel/git@default
 #       - archivers/gtar
 #       - ports-mgmt/pkg
 #       - ports-mgmt/portmaster
@@ -50,6 +75,7 @@
 #   - pkglist: smart
 #     packages:
 #       - sysutils/smartmontools
+#       - sysutils/smart
 #   - pkglist: procmail
 #     packages:
 #       - mail/procmail
@@ -59,26 +85,30 @@
 #   - pkglist: linux
 #     packages:
 #       - emulators/linux_base-{{ bsd_linux_version }}
+
+# List of packages in the form pkg-orig
 #
 # pkg_list_amd64:
 #   - shells/bash
-#   - devel/git
+#   - devel/git@default
 #   - archivers/gtar
 #   - ports-mgmt/pkg
 #   - ports-mgmt/portmaster
 #   - ports-mgmt/portupgrade
 #   - net/rsync
 #   - ftp/wget
-#
+
+# Do not select all dictionaries
 # pkg_dict_all: false
 #
+# Select the dictionary "minimal" only
 # pkg_dict_select:
 #   - minimal
 #
-# # Select the list from fp_packages. See vbotka.freebsd_postinstall
-# pkg_dict_select: "{{ fp_packages|selectattr('enabled')|
-#                                  map(attribute='list')|
-#                                  list|unique|sort }}"
+# Select the dictionaries from fp_packages. See vbotka.freebsd_postinstall
+# pkg_dict_select: "{{ fp_packages | selectattr('enabled') |
+#                                    map(attribute='list') |
+#                                    list | unique | sort }}"
 
 # EOF
 ...

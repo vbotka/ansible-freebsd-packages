@@ -1,5 +1,5 @@
 ---
-- name: "Config: Debug pkg_debug={{ pkg_debug }}"
+- name: "Conf: Debug pkg_debug={{ pkg_debug }}"
   vars:
     msg: |-
       pkg_owner: {{ pkg_owner }}
@@ -15,7 +15,7 @@
     msg: "{{ '{}'.format(msg) }}"
   when: pkg_debug | bool
 
-- name: "Config: Configure /etc/pkg/FreeBSD.conf"
+- name: "Conf: Configure /etc/pkg/FreeBSD.conf"
   ansible.builtin.template:
     src: "{{ pkg_default_repo_template }}"
     dest: /etc/pkg/FreeBSD.conf
@@ -27,11 +27,11 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: Create /usr/local/etc/pkg/repos/*
+- name: "Create /usr/local/etc/pkg/repos/*"
   when: pkg_repos_conf | length > 0
   block:
 
-    - name: "Config: Create directories"
+    - name: "Conf: Create directories"
       ansible.builtin.file:
         state: directory
         path: "{{ item }}"
@@ -42,7 +42,7 @@
         - /usr/local/etc/pkg
         - /usr/local/etc/pkg/repos
 
-    - name: "Config: Configure /usr/local/etc/pkg/repos"
+    - name: "Conf: Configure /usr/local/etc/pkg/repos"
       ansible.builtin.template:
         src: "{{ pkg_repos_template }}"
         dest: /usr/local/etc/pkg/repos/{{ item.name }}.conf
