@@ -20,6 +20,7 @@ Minor Changes
 * Labels formatting.
 * Update debug. Redundant vars removed.
 * Update pkg_repos_conf examples in defaults/main.yml
+* Update samples vars/main.yml.sample
 
 2.6.3
 =====
