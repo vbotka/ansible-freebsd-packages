@@ -3,6 +3,24 @@ vbotka.freebsd_packages 2.6 Release Notes
 =========================================
 
 .. contents:: Topics
+# BEGIN Commits 2.6.5
+- Rename changelogs to changelog.
+- Start dvel 2.6.5
+# END Commits 2.6.5
+# BEGIN Release notes 2.6.5
+2.6.5
+=====
+Release Summary
+---------------
+Major Changes
+-------------
+Minor Changes
+-------------
+Bugfixes
+--------
+Breaking Changes / Porting Guide
+--------------------------------
+# END Release notes 2.6.5
 
 
 2.6.5
