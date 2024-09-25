@@ -4,6 +4,7 @@ vbotka.freebsd_packages 2.6 Release Notes
 
 .. contents:: Topics
 # BEGIN Commits 2.6.5
+- Update python 3.11 in .travis.yml
 - Rename changelogs to changelog.
 - Start dvel 2.6.5
 # END Commits 2.6.5
@@ -16,6 +17,10 @@ Major Changes
 -------------
 Minor Changes
 -------------
+- Update python 3.11 in .travis.yml
+- Rename changelogs to changelog.
+- Start dvel 2.6.5
+
 Bugfixes
 --------
 Breaking Changes / Porting Guide
