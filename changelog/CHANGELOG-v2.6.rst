@@ -5,6 +5,26 @@ vbotka.freebsd_packages 2.6 Release Notes
 .. contents:: Topics
 
 
+2.6.6
+=====
+
+Release Summary
+---------------
+Feature update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Update README
+* Add var pkg_repos_conf_clean (default false)
+* Add var pkg_debug2 (default false)
+* Remove repos in /usr/local/etc/pkg/repos/ not listed in
+  pkg_repos_conf. When pkg_repos_conf_clean=true
+* Update debug.yml
+
+
 2.6.5
 =====
 

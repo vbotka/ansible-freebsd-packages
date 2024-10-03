@@ -42,6 +42,7 @@
       pkg_default_repo_conf:
         {{ pkg_default_repo_conf | to_yaml(indent=2) | indent(2) }}
       pkg_repos_template: {{ pkg_repos_template }}
+      pkg_repos_conf_clean: {{ pkg_repos_conf_clean }}
       pkg_repos_conf:
         {{ pkg_repos_conf | to_yaml(indent=2) | indent(2) }}
       pkg_dict_all: {{ pkg_dict_all }}
