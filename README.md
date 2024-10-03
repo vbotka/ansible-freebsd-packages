@@ -107,16 +107,17 @@ Display variables
 shell> ansible-playbook freebsd-packages.yml -e pkg_debug=true -t pkg_debug
 ```
 
+Configure repositories. Set pkg_repos_conf_clean=true to delete repos not listed
+in pkg_repos_conf
+
+```bash
+shell> ansible-playbook freebsd-packages.yml -t pkg_conf
+```
+
 Dry-run the playbook and display changes
 
 ```bash
 shell> ansible-playbook freebsd-packages.yml --check --diff
-```
-
-Optionally, configure repositories in a separate step. This will enable to display the actual installation dry-run
-
-```bash
-shell> ansible-playbook freebsd-packages.yml -t pkg_conf
 ```
 
 Dry-run the packages installation

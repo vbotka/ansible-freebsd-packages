@@ -1,6 +1,6 @@
 ---
 # defaults for freebsd_packages
-pkg_role_version: 2.6.5
+pkg_role_version: 2.6.6
 
 # requirements >=
 pkg_version_community_general: 9.3.0
@@ -17,6 +17,7 @@ pkg_backup_conf: false
 # Print facts and lists of variables.
 # pkg_debug: true
 pkg_debug: false
+pkg_debug2: false
 
 # Sanity. Various tests.
 pkg_sanity: true
@@ -66,6 +67,8 @@ pkg_default_repo_conf: []
 
 # /usr/local/etc/pkg/repos
 pkg_repos_template: repo.j2
+# Remove repos not listed in pkg_repos_conf
+pkg_repos_conf_clean: false
 pkg_repos_conf: []
 # - "{{ pkg_default_repo }}"
 #

@@ -27,7 +27,7 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: "Create /usr/local/etc/pkg/repos/*"
+- name: Create repos in /usr/local/etc/pkg/repos/
   when: pkg_repos_conf | length > 0
   block:
 
@@ -53,5 +53,42 @@
       loop: "{{ pkg_repos_conf }}"
       loop_control:
         label: "{{ item.name }}"
+      register: out
+
+    - name: "Conf: Debug repos pkg_debug2={{ pkg_debug2 }}"
+      ansible.builtin.debug:
+        var: out
+      when: pkg_debug2 | bool
+
+    - name: "Conf: Create my_repos list"
+      ansible.builtin.set_fact:
+        my_repos: "{{ out.results | map(attribute='dest') }}"
+
+    - name: "Conf: Debug my_repos pkg_debug={{ pkg_debug }}"
+      ansible.builtin.debug:
+        var: my_repos
+      when: pkg_debug | bool
+
+- name: Remove repos in /usr/local/etc/pkg/repos/ not listed in pkg_repos_conf
+  when: pkg_repos_conf_clean | bool
+  block:
+
+    - name: "Conf: Find repos"
+      ansible.builtin.find:
+        paths: /usr/local/etc/pkg/repos
+        patterns: '*.conf'
+        file_type: file
+      register: out
+
+    - name: "Conf: Debug repos pkg_debug2={{ pkg_debug2 }}"
+      ansible.builtin.debug:
+        var: out
+      when: pkg_debug2 | bool
+
+    - name: "Conf: Remove repos not listed in pkg_repos_conf"
+      ansible.builtin.file:
+        state: absent
+        path: "{{ item }}"
+      loop: "{{ out.files | map(attribute='path') | difference(my_repos) }}"
 
 # EOF
