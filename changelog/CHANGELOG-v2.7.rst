@@ -13,6 +13,8 @@ Release Summary
 
 Major Changes
 -------------
+* Support 13.4, 13.5, 14.1, and 14.2
+* Bump Ansible version to 2.18
 
 Minor Changes
 -------------
