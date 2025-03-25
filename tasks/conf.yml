@@ -1,5 +1,6 @@
 ---
 - name: "Conf: Debug pkg_debug={{ pkg_debug }}"
+  when: pkg_debug | bool
   vars:
     msg: |-
       pkg_owner: {{ pkg_owner }}
@@ -13,7 +14,6 @@
         {{ pkg_repos_conf | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: pkg_debug | bool
 
 - name: "Conf: Configure /etc/pkg/FreeBSD.conf"
   ansible.builtin.template:
@@ -43,6 +43,7 @@
         - /usr/local/etc/pkg/repos
 
     - name: "Conf: Configure /usr/local/etc/pkg/repos"
+      register: out
       ansible.builtin.template:
         src: "{{ pkg_repos_template }}"
         dest: /usr/local/etc/pkg/repos/{{ item.name }}.conf
@@ -53,37 +54,36 @@
       loop: "{{ pkg_repos_conf }}"
       loop_control:
         label: "{{ item.name }}"
-      register: out
 
     - name: "Conf: Debug repos pkg_debug2={{ pkg_debug2 }}"
+      when: pkg_debug2 | bool
       ansible.builtin.debug:
         var: out
-      when: pkg_debug2 | bool
 
     - name: "Conf: Create my_repos list"
       ansible.builtin.set_fact:
         my_repos: "{{ out.results | map(attribute='dest') }}"
 
     - name: "Conf: Debug my_repos pkg_debug={{ pkg_debug }}"
+      when: pkg_debug | bool
       ansible.builtin.debug:
         var: my_repos
-      when: pkg_debug | bool
 
 - name: Remove repos in /usr/local/etc/pkg/repos/ not listed in pkg_repos_conf
   when: pkg_repos_conf_clean | bool
   block:
 
     - name: "Conf: Find repos"
+      register: out
       ansible.builtin.find:
         paths: /usr/local/etc/pkg/repos
         patterns: '*.conf'
         file_type: file
-      register: out
 
     - name: "Conf: Debug repos pkg_debug2={{ pkg_debug2 }}"
+      when: pkg_debug2 | bool
       ansible.builtin.debug:
         var: out
-      when: pkg_debug2 | bool
 
     - name: "Conf: Remove repos not listed in pkg_repos_conf"
       ansible.builtin.file:

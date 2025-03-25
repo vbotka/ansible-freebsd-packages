@@ -5,11 +5,12 @@
   block:
 
     - name: "Packages_delete: Debug list pkg_list_deinstall pkg_debug={{ pkg_debug }}"
+      when: pkg_debug | bool
       ansible.builtin.debug:
         var: pkg_list_deinstall
-      when: pkg_debug | bool
 
     - name: "Packages_delete: Deinstall list pkg_list_deinstall"
+      when: not pkg_dryrun | bool
       community.general.pkgng:
         name: "{{ pkg_list_deinstall }}"
         state: absent
@@ -17,12 +18,11 @@
       retries: "{{ freebsd_install_retries }}"
       until: result is succeeded
       delay: "{{ freebsd_install_delay }}"
-      when: not pkg_dryrun | bool
 
     - name: "Packages_delete: Debug result pkg_debug={{ pkg_debug }}"
+      when: pkg_debug | bool
       ansible.builtin.debug:
         var: result
-      when: pkg_debug | bool
 
 - name: "Deinstall individually list pkg_list_deinstall"
   when: pkg_install_individually | bool
@@ -30,12 +30,13 @@
   block:
 
     - name: "Packages_delete: Debug individually from list pkg_list_deinstall pkg_debug={{ pkg_debug }}"
+      when: pkg_debug | bool
       ansible.builtin.debug:
         msg: "{{ item }}"
       loop: "{{ pkg_list_deinstall }}"
-      when: pkg_debug | bool
 
     - name: "Packages_delete: Deinstall individually from list pkg_list_deinstall"
+      when: not pkg_dryrun | bool
       community.general.pkgng:
         name: "{{ item }}"
         state: absent
@@ -44,11 +45,10 @@
       retries: "{{ freebsd_install_retries }}"
       until: result is succeeded
       delay: "{{ freebsd_install_delay }}"
-      when: not pkg_dryrun | bool
 
     - name: "Packages_delete: Debug result pkg_debug={{ pkg_debug }}"
+      when: pkg_debug | bool
       ansible.builtin.debug:
         var: result
-      when: pkg_debug | bool
 
 # EOF

@@ -18,6 +18,8 @@ Major Changes
 
 Minor Changes
 -------------
+* Improved formatting
+* Sanity assert set quiet=true
 
 Bugfixes
 --------
