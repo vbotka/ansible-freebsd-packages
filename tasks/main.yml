@@ -20,6 +20,7 @@
   tags: pkg_conf
 
 - name: Install and delete packages
+  when: freebsd_install_method | lower == 'packages'
   module_defaults:
     community.general.pkgng:
       annotation: "{{ pkg_annotation | d(omit) }}"
@@ -32,7 +33,6 @@
       rootdir: "{{ pkg_rootdir | d(omit) }}"
       state: "{{ pkg_state | d(omit) }}"
       use_globs: "{{ pkg_use_globs | d(omit) | bool }}"
-  when: freebsd_install_method | lower == 'packages'
   block:
 
     - name: Import pkg_delete.yml

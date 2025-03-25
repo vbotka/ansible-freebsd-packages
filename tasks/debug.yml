@@ -24,6 +24,7 @@
       pkg_backup_conf: {{ pkg_backup_conf }}
       pkg_dryrun: {{ pkg_dryrun }}
       pkg_install_individually: {{ pkg_install_individually }}
+      pkg_delegate: "{{ pkg_delegate }}"
 
       pkg_owner: {{ pkg_owner }}
       pkg_group: {{ pkg_group }}

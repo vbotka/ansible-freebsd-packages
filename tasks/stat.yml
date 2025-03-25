@@ -4,16 +4,16 @@
   block:
 
     - name: "Stat: Get pkg audit"
-      ansible.builtin.command: pkg audit -q -F -Rjson-compact
       register: pkg_audit_out
       changed_when: false
       failed_when: pkg_audit_out.rc > 1 # rc=1 if pkg_count != 0
+      ansible.builtin.command: pkg audit -q -F -Rjson-compact
 
     - name: "Stat: Debug pkg audit pkg_debug={{ pkg_debug }}"
-      ansible.builtin.debug:
-        var: pkg_audit
       when: pkg_debug | bool
       run_once: true
+      ansible.builtin.debug:
+        var: pkg_audit
 
   rescue:
 

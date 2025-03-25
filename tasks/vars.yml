@@ -11,6 +11,7 @@
     pkg_dict_select: "{{ pkg_dict_select | unique | sort }}"
 
 - name: "Vars: Debug pkg_debug={{ pkg_debug }}"
+  when: pkg_debug | bool
   vars:
     msg: |-
       ansible_architecture: {{ ansible_architecture }}
@@ -24,6 +25,5 @@
         {{ pkg_dict_select | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
-  when: pkg_debug | bool
 
 # EOF

@@ -1,6 +1,6 @@
 ---
 # defaults for freebsd_packages
-pkg_role_version: 2.6.6
+pkg_role_version: 2.7.0
 
 # requirements >=
 pkg_version_community_general: 9.3.0
@@ -76,6 +76,10 @@ pkg_repos_conf: []
 #   name: FreeBSD
 #   conf:
 #     - { key: enabled, value: "no" }
+
+# Delegate the jail installation to the vmm host.
+# Variable pkg_jail is required when pkg_delegate not empty.
+pkg_delegate: ''
 
 # Optional parameters of the module community.general.pkgng
 # pkg_annotation: [str]
