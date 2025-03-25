@@ -16,8 +16,10 @@
 
     - name: "Packages_install: Install all lists from pkg_dict"
       when: not pkg_dryrun | bool
+      delegate_to: "{{ (pkg_delegate | length > 0) | ternary(pkg_delegate, omit) }}"
       community.general.pkgng:
         name: "{{ item.packages }}"
+        jail: "{{ pkg_pkg_jail | d(omit) }}"
       loop: "{{ pkg_dict }}"
       loop_control:
         label: "{{ item.pkglist }}"
@@ -48,6 +50,7 @@
 
     - name: "Packages_install: Install individually from all lists in pkg_dict"
       when: not pkg_dryrun | bool
+      delegate_to: "{{ (pkg_delegate | length > 0) | ternary(pkg_delegate, omit) }}"
       community.general.pkgng:
         name: "{{ item.1 }}"
       loop: "{{ pkg_dict | subelements('packages') }}"
@@ -80,6 +83,7 @@
 
     - name: "Packages_install: Install selected lists from pkg_dict"
       when: not pkg_dryrun | bool
+      delegate_to: "{{ (pkg_delegate | length > 0) | ternary(pkg_delegate, omit) }}"
       community.general.pkgng:
         name: "{{ item.packages }}"
       loop: "{{ pkg_dict | selectattr('pkglist', 'in', pkg_dict_select) }}"
@@ -112,6 +116,7 @@
 
     - name: "Packages_install: Install individually from selected lists in pkg_dict"
       when: not pkg_dryrun | bool
+      delegate_to: "{{ (pkg_delegate | length > 0) | ternary(pkg_delegate, omit) }}"
       community.general.pkgng:
         name: "{{ item.1 }}"
       loop: "{{ pkg_dict | selectattr('pkglist', 'in', pkg_dict_select) | subelements('packages') }}"
@@ -141,6 +146,7 @@
 
     - name: "Packages_install: Install list pkg_list"
       when: not pkg_dryrun | bool
+      delegate_to: "{{ (pkg_delegate | length > 0) | ternary(pkg_delegate, omit) }}"
       community.general.pkgng:
         name: "{{ pkg_list }}"
       register: result
@@ -168,6 +174,7 @@
 
     - name: "Packages_install: Install individually from list pkg_list"
       when: not pkg_dryrun | bool
+      delegate_to: "{{ (pkg_delegate | length > 0) | ternary(pkg_delegate, omit) }}"
       community.general.pkgng:
         name: "{{ item }}"
       loop: "{{ pkg_list }}"

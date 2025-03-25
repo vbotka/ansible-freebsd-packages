@@ -77,6 +77,10 @@ pkg_repos_conf: []
 #   conf:
 #     - { key: enabled, value: "no" }
 
+# Delegate the jail installation to the vmm host.
+# Variable pkg_jail is required when pkg_delegate not empty.
+pkg_delegate: ''
+
 # Optional parameters of the module community.general.pkgng
 # pkg_annotation: [str]
 # pkg_autoremove: false

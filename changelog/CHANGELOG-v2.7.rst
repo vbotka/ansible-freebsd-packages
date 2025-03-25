@@ -20,6 +20,9 @@ Minor Changes
 -------------
 * Improved formatting
 * Sanity assert set quiet=true
+* Optionally delegate pkgng to vmm host
+* Add variable pkg_delegate (default='')
+* Add sanity test pkg_jail is required when pkg_delegate not empty.
 
 Bugfixes
 --------
