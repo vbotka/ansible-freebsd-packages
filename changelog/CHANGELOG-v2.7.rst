@@ -17,7 +17,7 @@ Major Changes
 
 Minor Changes
 -------------
-
+* Updated contrib/vars/pkgdict_*.yml
 
 2.7.0
 =====
