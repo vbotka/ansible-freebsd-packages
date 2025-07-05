@@ -40,7 +40,7 @@ pkg_dict_arm64:
       - emulators/linux_base-{{ bsd_linux_version }}
   - pkglist: devel
     packages:
-      - devel/llvm60
+      - devel/llvm
       - devel/py-pip
   - pkglist: joomla
     packages:
