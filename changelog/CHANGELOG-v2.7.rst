@@ -5,6 +5,23 @@ vbotka.freebsd_packages 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.3
+=====
+
+Release Summary
+---------------
+Update contrib/pkgdict_*; Support 14.3
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Update contrib/pkgdict_*
+* Update meta; Support 14.3
+* Update README.
+
+
 2.7.2
 =====
 
