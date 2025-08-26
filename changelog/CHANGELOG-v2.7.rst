@@ -10,16 +10,19 @@ vbotka.freebsd_packages 2.7 Release Notes
 
 Release Summary
 ---------------
+Update repo configuration.
 
 Major Changes
 -------------
 
 Minor Changes
 -------------
+* Update tasks conf.yml
+* Add template repos.j2
 
 Bugfixes
 --------
-
+* Fix template repo.j2
 
 2.7.3
 =====
