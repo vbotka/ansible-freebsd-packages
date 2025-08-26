@@ -1,8 +1,4 @@
 ---
-# Owner and group of the configuration files.
-pkg_owner: root
-pkg_group: wheel
-
 # /etc/pkg/FreeBSD.conf
 pkg_default_repo_template: repo.j2
 pkg_default_repo_conf: []

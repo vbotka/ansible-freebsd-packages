@@ -12,3 +12,7 @@ pkg_backup_conf: false
 # pkg_debug: true
 pkg_debug: false
 pkg_debug2: false
+
+# Owner and group of the configuration files.
+pkg_owner: root
+pkg_group: wheel
