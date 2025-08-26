@@ -5,6 +5,28 @@ vbotka.freebsd_packages 2.7 Release Notes
 .. contents:: Topics
 
 
+2.7.4
+=====
+
+Release Summary
+---------------
+Update repo configuration. Add tasks keys.yml to copy keys.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Update tasks conf.yml, debug.yml
+* Add template repos.j2
+* Add tasks keys.yml
+* Add variable pkg_keys
+
+Bugfixes
+--------
+* Fix template repo.j2
+
+
 2.7.3
 =====
 
