@@ -28,15 +28,15 @@
   module_defaults:
     community.general.pkgng:
       annotation: "{{ pkg_annotation | d(omit) }}"
-      autoremove: "{{ pkg_autoremove | d(omit) | bool }}"
-      cached: "{{ pkg_cached | d(omit) | bool }}"
+      autoremove: "{{ pkg_autoremove | d(omit) }}"
+      cached: "{{ pkg_cached | d(omit) }}"
       chroot: "{{ pkg_chroot | d(omit) }}"
-      ignore_osver: "{{ pkg_ignore_osver | d(omit) | bool }}"
+      ignore_osver: "{{ pkg_ignore_osver | d(omit) }}"
       jail: "{{ pkg_jail | d(omit) }}"
       pkgsite: "{{ pkg_pkgsite | d(omit) }}"
       rootdir: "{{ pkg_rootdir | d(omit) }}"
       state: "{{ pkg_state | d(omit) }}"
-      use_globs: "{{ pkg_use_globs | d(omit) | bool }}"
+      use_globs: "{{ pkg_use_globs | d(omit) }}"
   block:
 
     - name: Deinstall packages.

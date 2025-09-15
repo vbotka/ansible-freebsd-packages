@@ -17,6 +17,8 @@ Major Changes
 
 Minor Changes
 -------------
+* Explicit bool conversion is no longer needed.
+* Simply omit delegate_to by default.
 
 Bugfixes
 --------
