@@ -1,0 +1,8 @@
+---
+# Fetch packages.
+pkg_fetch: false
+
+pkg_fetch_dir: /usr/local/repo
+pkg_fetch_dir_owner: root
+pkg_fetch_dir_group: wheel
+pkg_fetch_dir_mode: '0755'
