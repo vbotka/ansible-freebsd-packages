@@ -5,6 +5,29 @@ vbotka.freebsd_packages 2.9 Release Notes
 .. contents:: Topics
 
 
+2.9.1
+=====
+
+Release Summary
+---------------
+Added an option to fetch packages into the local repository.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Add handler to generate repo metadata.
+* Update debug task.
+* Update tasks formatting.
+* Add variables defaults
+  pkg_fetch=false
+  pkg_fetch_dir=/usr/local/repo
+  pkg_fetch_dir_owner=root
+  pkg_fetch_dir_group=wheel
+  pkg_fetch_dir_mode='0755'
+
+
 2.9.0
 =====
 

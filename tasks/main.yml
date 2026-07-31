@@ -2,26 +2,31 @@
 # tasks for freebsd_packages
 
 - name: Set pkg_* variables.
-  ansible.builtin.import_tasks: vars.yml
   tags: [pkg_vars, always]
+  ansible.builtin.import_tasks: vars.yml
 
 - name: Sanity tests.
-  ansible.builtin.import_tasks: sanity.yml
   when: pkg_sanity | bool
   tags: pkg_sanity
+  ansible.builtin.import_tasks: sanity.yml
 
 - name: Display variables.
-  ansible.builtin.import_tasks: debug.yml
   when: pkg_debug | bool
   tags: pkg_debug
+  ansible.builtin.import_tasks: debug.yml
 
 - name: Copy keys.
-  ansible.builtin.import_tasks: keys.yml
   tags: pkg_keys
+  ansible.builtin.import_tasks: keys.yml
 
 - name: Configuration.
-  ansible.builtin.import_tasks: conf.yml
   tags: pkg_conf
+  ansible.builtin.import_tasks: conf.yml
+
+- name: Fetch packages.
+  when: pkg_fetch | bool
+  tags: pkg_fetch
+  ansible.builtin.import_tasks: pkg-fetch.yml
 
 - name: Install and delete packages
   when: freebsd_install_method | lower == 'packages'
@@ -40,18 +45,18 @@
   block:
 
     - name: Deinstall packages.
-      ansible.builtin.import_tasks: pkg_delete.yml
       when: pkg_list_deinstall | length > 0
       tags: pkg_delete
+      ansible.builtin.import_tasks: pkg-delete.yml
 
     - name: Install packages.
-      ansible.builtin.import_tasks: pkg_install.yml
       when: (pkg_dict_all | bool) or (pkg_dict_select | length > 0) or (pkg_list | length > 0)
+      ansible.builtin.import_tasks: pkg-install.yml
       tags: pkg_install
 
 - name: Status and audit.
-  ansible.builtin.import_tasks: stat.yml
   when: pkg_stat | bool
   tags: pkg_stat
+  ansible.builtin.import_tasks: stat.yml
 
 # EOF

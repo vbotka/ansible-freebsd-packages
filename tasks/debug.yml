@@ -17,6 +17,12 @@
       freebsd_install_retries: {{ freebsd_install_retries }}
       freebsd_install_delay: {{ freebsd_install_delay }}
 
+      pkg_fetch: {{ pkg_fetch }}
+      pkg_fetch_dir: {{ pkg_fetch_dir }}
+      pkg_fetch_dir_owner: {{ pkg_fetch_dir_owner }}
+      pkg_fetch_dir_group: {{ pkg_fetch_dir_group }}
+      pkg_fetch_dir_mode: {{ pkg_fetch_dir_mode }}
+
       pkg_sanity: {{ pkg_sanity }}
       pkg_sanity_version_community_general: {{ pkg_sanity_version_community_general }}
       pkg_stat: {{ pkg_stat }}
