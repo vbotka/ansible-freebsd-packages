@@ -10,8 +10,11 @@
       pkg_default_repo_conf:
         {{ pkg_default_repo_conf | to_nice_yaml(indent=2) | indent(2) }}
       pkg_repos_template: {{ pkg_repos_template }}
+      pkg_repos_conf_clean: {{ pkg_repos_conf_clean }}
       pkg_repos_conf:
         {{ pkg_repos_conf | to_nice_yaml(indent=2) | indent(2) }}
+      pkg_repos_conf_ucl:
+        {{ pkg_repos_conf_ucl | to_nice_yaml(indent=2) | indent(2) }}
   ansible.builtin.debug:
     msg: "{{ '{}'.format(msg) }}"
 
@@ -81,9 +84,45 @@
         var: out
 
     - name: "Conf: Remove repos not listed in pkg_repos_conf"
+      vars:
+        all_repos: "{{ out.files | map(attribute='path')
+                                 | map('basename')
+                                 | map('splitext')
+                                 | map('first') }}"
+        my_repos: "{{ pkg_repos_conf | map(attribute='name') }}"
       ansible.builtin.file:
         state: absent
-        path: "{{ item }}"
-      loop: "{{ out.files | map(attribute='path') | difference(my_repos) }}"
+        path: "/usr/local/etc/pkg/repos/{{ item }}.conf"
+      loop: "{{ all_repos | difference(my_repos) }}"
+
+- name: Configure repos
+  when: pkg_repos_conf_ucl | length > 0
+  block:
+
+    - name: "Conf: Configure repos"
+      register: out
+      vbotka.freebsd.ucl:
+        path: "{{ item.0.name }}"
+        create: "{{ item.0.create | d(omit) }}"
+        upath: "{{ item.1.key }}"
+        state: "{{ item.1.state | d(omit) }}"
+        value: "{{ item.1.value | d(omit) }}"
+        vtype: "{{ item.1.vtype | d(omit) }}"
+        merge: "{{ item.1.merge | d(omit) }}"
+        backup: "{{ pkg_backup_conf }}"
+      loop: "{{ pkg_repos_conf_ucl | subelements('conf') }}"
+      loop_control:
+        label: "{{ item.0.name }} {{ item.1.key }}"
+
+    - name: "Conf: Debug repos pkg_debug2={{ pkg_debug2 }}"
+      when: pkg_debug2 | bool
+      ansible.builtin.debug:
+        var: out
+
+    - name: "Conf: Debug list repos pkg_debug={{ pkg_debug }}"
+      when: pkg_debug | bool
+      ansible.builtin.debug:
+        msg: |
+          {{ out.results }}
 
 # EOF

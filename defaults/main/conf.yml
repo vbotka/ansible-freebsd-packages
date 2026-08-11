@@ -25,5 +25,9 @@ pkg_repos_conf: []
 #   conf:
 #     - {key: enabled, value: "no"}
 #
+
 # Remove repos not listed in pkg_repos_conf
 pkg_repos_conf_clean: false
+
+# UCL configuration by module vbotka.freebsd.ucl
+pkg_repos_conf_ucl: []

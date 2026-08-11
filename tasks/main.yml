@@ -28,7 +28,7 @@
   tags: pkg_fetch
   ansible.builtin.import_tasks: pkg-fetch.yml
 
-- name: Install and delete packages
+- name: Install and delete packages.
   when: freebsd_install_method | lower == 'packages'
   module_defaults:
     community.general.pkgng:

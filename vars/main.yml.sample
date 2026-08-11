@@ -57,6 +57,15 @@
 #       - {key: fingerprints, value: '"/usr/share/keys/pkg"'}
 #       - {key: enabled, value: 'yes'}
 
+# Use module vbotka.freebsd.ucl to configure local repo
+# pkg_repos_conf_ucl:
+#   - name: /usr/local/etc/pkg/repos/local.conf
+#     create: true
+#     conf:
+#       - {key: local.url, value: 'file:///usr/local/repo'}
+#       - {key: local.enabled, value: 'yes'}
+#       - {key: local.signature_type, value: 'none'}
+
 # See default lists of dictionaries pkgdict_*.yml in
 # vbotka.freebsd_postinstall/defaults/main/pkgdict_*.yml
 #
