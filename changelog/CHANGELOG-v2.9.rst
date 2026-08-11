@@ -10,12 +10,17 @@ vbotka.freebsd_packages 2.9 Release Notes
 
 Release Summary
 ---------------
+Add optional UCL configuration by vbotka.freebsd.ucl
 
 Major Changes
 -------------
 
 Minor Changes
 -------------
+* Update meta: Require collection vbotka.freebsd
+* Add variable: pkg_repos_conf_ucl (default=[])
+* Update defaults and vars samples.
+* Fix task: Remove repos not listed in pkg_repos_conf
 
 
 2.9.1
