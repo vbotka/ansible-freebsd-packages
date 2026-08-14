@@ -16,6 +16,8 @@ Major Changes
 
 Minor Changes
 -------------
+* Move .ansible-lint.local to .ansible-lint; Galaxy does not use
+  .ansible-lint from a role.
 
 
 2.9.2
