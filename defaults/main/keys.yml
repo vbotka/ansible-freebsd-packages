@@ -1,5 +1,2 @@
 ---
 pkg_keys: {}
-# pkg_keys:
-#   /usr/local/etc/ssl/crt:
-#     - build.example.com-sk.crt
