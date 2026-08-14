@@ -175,11 +175,11 @@ shell> cat /etc/pkg/FreeBSD.conf
 # create a /usr/local/etc/pkg/repos/FreeBSD.conf file:
 #
 #   mkdir -p /usr/local/etc/pkg/repos
-#   echo "FreeBSD: { enabled: no }" > /usr/local/etc/pkg/repos/FreeBSD.conf
+#   echo "FreeBSD-ports: { enabled: no }" > /usr/local/etc/pkg/repos/FreeBSD.conf
 #
 
-FreeBSD: {
-  url: "pkg+http://pkg.FreeBSD.org/${ABI}/quarterly",
+FreeBSD-ports: {
+  url: "pkg+https://pkg.FreeBSD.org/${ABI}/quarterly",
   mirror_type: "srv",
   signature_type: "fingerprints",
   fingerprints: "/usr/share/keys/pkg",
@@ -192,15 +192,15 @@ Display the configured repository
 ```yaml
 # pkg -vv
   ...
-Repositories:
-  FreeBSD: {
-    url             : "pkg+http://pkg.FreeBSD.org/FreeBSD:13:amd64/quarterly",
+  FreeBSD-ports: {
+    url             : "pkg+https://pkg.FreeBSD.org/FreeBSD:15:amd64/quarterly",
     enabled         : yes,
     priority        : 0,
     mirror_type     : "SRV",
     signature_type  : "FINGERPRINTS",
     fingerprints    : "/usr/share/keys/pkg"
   }
+  ...
 ```
 
 
@@ -472,15 +472,6 @@ ok: [srv.example.org] =>
 
   roles:
     - vbotka.freebsd_packages
-```
-
-
-## Ansible lint
-
-Use the configuration file *.ansible-lint.local* when running *ansible-lint*. Some rules might be disabled and some warnings might be ignored. See the notes in the configuration file.
-
-```bash
-shell> ansible-lint -c .ansible-lint.local
 ```
 
 

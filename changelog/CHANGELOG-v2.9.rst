@@ -5,6 +5,25 @@ vbotka.freebsd_packages 2.9 Release Notes
 .. contents:: Topics
 
 
+2.9.3
+=====
+
+Release Summary
+---------------
+Maintenance update.
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+* Defaults cleanup.
+* Update vars samples.
+* Update README.md
+* Move .ansible-lint.local to .ansible-lint; Galaxy does not use
+  .ansible-lint from a role.
+
+
 2.9.2
 =====
 
