@@ -10,12 +10,16 @@ vbotka.freebsd_packages 2.9 Release Notes
 
 Release Summary
 ---------------
+Add variables for pkg-fetch.
 
 Major Changes
 -------------
 
 Minor Changes
 -------------
+* Add vars: pkg_fetch_dict_all (d=false), pkg_fetch_dict_select(d=[]),
+  pkg_fetch_list (d=[])
+* Update tasks debug.yml and pkg-fetch.yml
 
 
 2.9.3
