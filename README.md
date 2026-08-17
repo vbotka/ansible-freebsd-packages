@@ -8,21 +8,12 @@ This role is included in the collection [vbotka.freebsd](https://galaxy.ansible.
 
 [Ansible role.](https://galaxy.ansible.com/vbotka/freebsd_packages/) FreeBSD. Configure repositories. Install, update, and upgrade packages.
 
-Feel free to [share your feedback and report issues](https://github.com/vbotka/ansible-freebsd-packages/issues).
-
-[Contributions are welcome](https://github.com/firstcontributions/first-contributions).
-
 
 ## Requirements
 
-### Collections
-
-- community.general >= 9.3.0
-
-
 ## Variables
 
-Look at the defaults and examples in vars.
+Look at the defaults and samples in vars.
 
 
 ## Workflow
