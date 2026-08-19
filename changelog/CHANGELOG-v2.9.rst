@@ -5,6 +5,19 @@ vbotka.freebsd_packages 2.9 Release Notes
 .. contents:: Topics
 
 
+2.9.6
+=====
+
+Release Summary
+---------------
+
+Major Changes
+-------------
+
+Minor Changes
+-------------
+
+
 2.9.5
 =====
 
@@ -19,7 +32,7 @@ Update README.md
 Release Summary
 ---------------
 Add variables for pkg-fetch
-.
+
 Major Changes
 -------------
 
