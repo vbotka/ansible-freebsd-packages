@@ -10,12 +10,7 @@ vbotka.freebsd_packages 2.9 Release Notes
 
 Release Summary
 ---------------
-
-Major Changes
--------------
-
-Minor Changes
--------------
+Remove from a block the installation and deinstallation of packages.
 
 
 2.9.5
