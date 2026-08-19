@@ -28,8 +28,9 @@
   tags: pkg_fetch
   ansible.builtin.import_tasks: pkg-fetch.yml
 
-- name: Install and delete packages.
-  when: freebsd_install_method | lower == 'packages'
+- name: Deinstall packages.
+  when: pkg_list_deinstall | length > 0
+  tags: pkg_delete
   module_defaults:
     community.general.pkgng:
       annotation: "{{ pkg_annotation | d(omit) }}"
@@ -42,17 +43,24 @@
       rootdir: "{{ pkg_rootdir | d(omit) }}"
       state: "{{ pkg_state | d(omit) }}"
       use_globs: "{{ pkg_use_globs | d(omit) }}"
-  block:
+  ansible.builtin.import_tasks: pkg-delete.yml
 
-    - name: Deinstall packages.
-      when: pkg_list_deinstall | length > 0
-      tags: pkg_delete
-      ansible.builtin.import_tasks: pkg-delete.yml
-
-    - name: Install packages.
-      when: (pkg_dict_all | bool) or (pkg_dict_select | length > 0) or (pkg_list | length > 0)
-      ansible.builtin.import_tasks: pkg-install.yml
-      tags: pkg_install
+- name: Install packages.
+  when: (pkg_dict_all | bool) or (pkg_dict_select | length > 0) or (pkg_list | length > 0)
+  tags: pkg_install
+  module_defaults:
+    community.general.pkgng:
+      annotation: "{{ pkg_annotation | d(omit) }}"
+      autoremove: "{{ pkg_autoremove | d(omit) }}"
+      cached: "{{ pkg_cached | d(omit) }}"
+      chroot: "{{ pkg_chroot | d(omit) }}"
+      ignore_osver: "{{ pkg_ignore_osver | d(omit) }}"
+      jail: "{{ pkg_jail | d(omit) }}"
+      pkgsite: "{{ pkg_pkgsite | d(omit) }}"
+      rootdir: "{{ pkg_rootdir | d(omit) }}"
+      state: "{{ pkg_state | d(omit) }}"
+      use_globs: "{{ pkg_use_globs | d(omit) }}"
+  ansible.builtin.import_tasks: pkg-install.yml
 
 - name: Status and audit.
   when: pkg_stat | bool
