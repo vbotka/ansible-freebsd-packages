@@ -5,6 +5,13 @@ vbotka.freebsd_packages 2.9 Release Notes
 .. contents:: Topics
 
 
+2.9.7
+=====
+
+Release Summary
+---------------
+
+
 2.9.6
 =====
 
