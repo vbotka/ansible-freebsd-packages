@@ -10,6 +10,7 @@ vbotka.freebsd_packages 2.9 Release Notes
 
 Release Summary
 ---------------
+Add template repos_to_ucl.j2. Add sample to vars.
 
 
 2.9.6
