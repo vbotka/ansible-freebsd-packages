@@ -10,6 +10,7 @@ vbotka.freebsd_packages 2.9 Release Notes
 
 Release Summary
 ---------------
+Fetch packages first. Then configure the repository.
 
 
 2.9.8
